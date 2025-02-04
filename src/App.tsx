@@ -1,10 +1,9 @@
-import React from 'react'
-import ContactUs from './screens/contsctUs/ContactUs'
+import Appointment from './screens/appointment/appointment'
 
 const App = () => {
   return (
-    <div>
-      <ContactUs/>
+    <div className=''>
+      <Appointment/>
     </div>
   )
 }
