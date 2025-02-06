@@ -5,6 +5,7 @@ import './App.css'
 import { Route, Routes } from 'react-router-dom'
 import Services from './component/Services/Services.component'
 import tailwindcss from '@tailwindcss/vite'
+import Doctor from './screens/doctor.screen'
 
 function App() {
 
@@ -14,12 +15,10 @@ function App() {
     <div>
 
               <Routes>
-                   <Route path='/' element={<Services/>} />
+                   <Route path='/services' element={<Services/>} />
+                   <Route path='/services/:id' element={<Doctor/>} />
               </Routes>
-       
     </div>
-      
-
 
     </>
   )
