@@ -2,9 +2,15 @@ import React from "react";
 import doctorImg from "../../assets/contactUs-bg.png";
 import AppointmentForm from "./AppointmentForm";
 import ContactUs from "../contactUs/ContactUs";
+import { IAppointment } from "../../types/type";
 
 
 const Appointment = () => {
+  const handleAppointment=(newAppoint:IAppointment)=>{
+console.log('Hi from parent',newAppoint);
+localStorage.setItem('Appointment-Info',JSON.stringify(newAppoint))
+
+  }
   return (
     <>
       <section className="bg-[linear-gradient(25deg,#77BAFB_20%,#B3F4FE_60%,#84D4FF_90%)] pt-8">
@@ -31,7 +37,7 @@ const Appointment = () => {
       </section>
       <div className="grid grid-cols-1 md:grid-cols-2 mx-auto mt-12 wrapper gap-6 justify-center">
         <div className="">
-          <AppointmentForm />
+          <AppointmentForm onSubmit={handleAppointment}/>
         </div>
         <div>
           <ContactUs />
