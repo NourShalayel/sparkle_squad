@@ -3,5 +3,10 @@ export interface User {
     email: string;
     phone?: string;
     password: string;
-    role?: "doctor" | "patient";
+    role?: UserRole
+}
+
+export enum UserRole {
+    DOCTOR = 'doctor',
+    PATIENT = 'patient'
 }

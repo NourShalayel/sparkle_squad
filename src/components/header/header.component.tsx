@@ -1,11 +1,12 @@
-import './status-bar.css'
+import './header.css'
 import myImage from '../../assets/careHeart.png';
 import { Link } from 'react-router-dom';
 
 interface IProps {
     handleLogout: () => void;
 }
-const StatusBar = (props: IProps) => {
+
+const Header = (props: IProps) => {
     return (
         <>
             <div className='contanier'>
@@ -32,4 +33,4 @@ const StatusBar = (props: IProps) => {
     )
 }
 
-export default StatusBar;
+export default Header;
