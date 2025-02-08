@@ -3,6 +3,9 @@ import { IAppointment } from "../../types/type";
 import FormField from "../../components/FormField";
 import Dialog from "../../components/Dialog";
 import { ArrowRight } from "@phosphor-icons/react";
+import { DatePicker, TimePicker } from "antd";
+import dayjs from "dayjs";
+import "antd/dist/reset.css";
 
 const reasonsToVisit: string[] = [
   "General Checkup",
@@ -42,14 +45,11 @@ interface IProps {
 const AppointmentForm = ({ onSubmit }: IProps) => {
   const [appointment, setAppointment] = useState<IAppointment>(initValue);
   const [openDialog, setOpenDialog] = useState(false);
-  const newAppointment = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
-    e.preventDefault();
-    const { name, value } = e.target;
+
+  const newAppointment = (filed: string, value: any) => {
     const Appoint = {
       ...appointment,
-      [name]: value,
+      [filed]: value,
     };
     setAppointment(Appoint);
   };
@@ -63,8 +63,22 @@ const AppointmentForm = ({ onSubmit }: IProps) => {
     e.preventDefault();
     setOpenDialog(true);
   };
+
+  const handleDateChange = (date: dayjs.Dayjs | null) => {
+    setAppointment({
+      ...appointment,
+      pickDate: date ? date.format("YYYY-MM-DD") : "",
+    });
+  };
+
+  const handleTimeChange = (time: dayjs.Dayjs | null) => {
+    setAppointment({
+      ...appointment,
+      pickTime: time ? time.format("HH:mm") : "",
+    });
+  };
   return (
-    <form className="wrapper py-10" onSubmit={handleOpenDialog}>
+    <form className="wrapper" onSubmit={handleOpenDialog}>
       <div className="border rounded-2xl m-auto p-10 ">
         <h2 className="text-center text-mainText font-bold text-4xl">
           Appointment
@@ -76,14 +90,17 @@ const AppointmentForm = ({ onSubmit }: IProps) => {
             type={"text"}
             value={appointment.userName}
             name={"userName"}
-            onChange={newAppointment}
+            onChange={(e)=>newAppointment('userName',e.target.value)}
+            placeholder="Type here"
           />
           <FormField
             label={"Phone Number"}
+            
             type={"text"}
             value={appointment.patientPhone.toString()}
             name={"patientPhone"}
-            onChange={newAppointment}
+            onChange={(e)=>newAppointment('patientPhone',e.target.value)}
+            placeholder="Type here"
           />
         </div>
         <div className="flex flex-col md:flex-row gap-5">
@@ -93,49 +110,66 @@ const AppointmentForm = ({ onSubmit }: IProps) => {
             name="gender"
             value={appointment.gender}
             options={["Male", "Female"]}
-            onChange={newAppointment}
-          />
+            onChange={(e)=>newAppointment('gender',e.target.value)}
+            
+            />
           <FormField
             label={"Age"}
             type={"number"}
             value={appointment.age.toString()}
             name={"age"}
-            onChange={newAppointment}
-          />
+            onChange={(e)=>newAppointment('age',e.target.value)}
+            />
         </div>
-        <div className="flex flex-col md:flex-row gap-5 mt-4">
+        <div className="flex flex-col md:flex-row gap-5">
           <FormField
             type="select"
             options={reasonsToVisit}
             label={"Reason for Visit"}
             value={appointment.reason}
             name={"reason"}
-            onChange={newAppointment}
-          />
+            onChange={(e)=>newAppointment('reason',e.target.value)}
+            />
           <FormField
             type="select"
             options={departments}
             label={"Department"}
             value={appointment.department}
             name={"department"}
-            onChange={newAppointment}
-          />
+            onChange={(e)=>newAppointment('department',e.target.value)}
+            />
         </div>
-        <div className="flex flex-col md:flex-row gap-5 mt-4">
-          <FormField
-            label={"Appointment Date"}
-            type={"date"}
-            value={appointment.pickDate}
-            name={"pickDate"}
-            onChange={newAppointment}
-          />
-          <FormField
-            label={"Appointment Time"}
-            type={"time"}
-            value={appointment.pickTime}
-            name={"pickTime"}
-            onChange={newAppointment}
-          />
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-4 w-full">
+          <div>
+            <div className="label">Appointment date</div>
+            <DatePicker
+              value={appointment.pickDate ? dayjs(appointment.pickDate) : null}
+              onChange={handleDateChange}
+              format="YYYY-MM-DD"
+              allowClear
+              disabledDate={(current) =>
+                current && current < dayjs().startOf("day")
+              }
+              className="custom_input w-full"
+            />
+          </div>
+          <div>
+            <div className="label">Appointment time</div>
+            <TimePicker
+              value={
+                appointment.pickTime
+                  ? dayjs(appointment.pickTime, "HH:mm")
+                  : null
+              }
+              onChange={handleTimeChange}
+              format="HH:mm"
+              allowClear
+              minuteStep={30}
+              use12Hours
+              className="custom_input w-full"
+            />
+          </div>
         </div>
         <div className="flex justify-center md:justify-start">
           <button
