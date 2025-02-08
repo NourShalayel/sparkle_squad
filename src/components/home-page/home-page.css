@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Amaranth:wght@400;700&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    height: 100vh;
+    background: linear-gradient(to right, #71b5fa 0%, #B6F8FF 49%, #82D3FF 100%);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    width: 80%; 
+    max-width: 1200px; 
+}
+
+.text {
+    flex: 1; 
+}
+
+.header {
+    color: #214169;
+    letter-spacing: 1px;
+    font-family: 'Amaranth', sans-serif;
+    font-size: 50px;
+    text-align: left;
+}
+
+.paragraph {
+    margin-top: 10px;
+    text-align: left;
+    font-size: 15px;
+    line-height: 1.4;
+}
+
+.img-container {
+    flex: 1;
+    display: flex;
+    justify-content: center; 
+}
+
+.doctor-img {
+    max-width: 100%; 
+    height: auto; 
+    object-fit: contain; 
+}

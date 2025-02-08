@@ -1,35 +1,53 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import './App.css';
+import LandingHomePage from './components/home-landing-page';
+import Register from './components/login/login.components';
+import StatusBar from './components/status-bar/status-bar.component';
+import useLocalStorage from './hooks/local-storage.hook';
+import { User } from './types';
+import { useEffect, useState } from "react";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [users, setUsers] = useLocalStorage<User[]>("users", []);
+  const [loggedInUser, setLoggedInUser] = useLocalStorage<User | null>("loggedInUser", null);
+  const [isLoading, setIsLoading] = useState(true); 
+
+  useEffect(() => {
+    setIsLoading(false); 
+  }, []);
+
+  const handleAuth = (data: User, isSignup: boolean) => {
+      const existingUser = users.find(user => user.email === data.email);
+      if (isSignup) {
+        if (existingUser) {
+            alert("User already exists! Please log in.");
+            return;
+        }
+        const newUser = data;
+        setUsers([...users, newUser]);
+        setLoggedInUser(newUser);
+      } else {
+          if (!existingUser || existingUser.password !== data.password) {
+              alert("Invalid email or password!");
+              return;
+          }
+          setLoggedInUser(existingUser);
+      }
+  };
+
+  const handleLogout = () => {
+      setLoggedInUser(null);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Router>
+      {loggedInUser && <StatusBar handleLogout={handleLogout} />}
+      <Routes>
+        <Route path="/" element={loggedInUser ? <LandingHomePage /> : <Navigate to="/login" replace />} />
+        <Route path="/login" element={loggedInUser ? <Navigate to="/" replace /> : <Register onSubmit={handleAuth} />} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;

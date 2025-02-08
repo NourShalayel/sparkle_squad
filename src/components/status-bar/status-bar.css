@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Agbalumo&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.contanier {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    color: #214169;
+    font-size: 17px;
+    background: linear-gradient(to right, #71b5fa 0%, #B6F8FF 49%, #82D3FF 100%);
+}
+
+.nav {
+    display: flex;
+    gap: 20px;
+}
+
+.title {
+    display: flex;
+    align-items: baseline;
+    justify-content: baseline;
+    align-self: baseline;
+    font-weight: bold;
+    font-size: 20px;
+    font-family: 'Agbalumo', sans-serif;
+}
+
+.img {
+    width: 25px;
+    height: 25px;
+
+}
+
+.search-container input {
+    padding: 8px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    background-color: rgb(234, 233, 233);
+    width: 200px;
+    padding-left: 25px;
+}
+
+.nav a {
+    color: #214169;
+    text-decoration: none;
+    position: relative;
+    font-size: 17px;
+}
+
+.nav a:hover{
+    color: #0071FF;
+}
+
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-input {
+    width: 280px;
+    height: 40px;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 45px 10px 20px;
+    font-size: 16px;
+    outline: none;
+    background: rgba(255, 255, 255, 0.6); 
+    backdrop-filter: blur(8px);
+    color: #4a4a4a;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.search-input::placeholder {
+    color: #9aa0a6;
+    font-size: 16px;
+}
+
+.search-icon {
+    position: absolute;
+    right: 15px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.logout-input {
+    width: 90px;
+    border: none;
+    border-radius: 25px;
+    padding: 10px;
+    font-size: 16px;
+    outline: none;
+    background: rgba(255, 255, 255, 0.6); 
+    backdrop-filter: blur(8px);
+    color: #4a4a4a;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-size: 15px;
+    background-color: rgb(234, 233, 233);
+    font-weight: bold;
+}
+
+.logout-input:hover{
+    cursor: pointer;
+}
+
+.nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #0071FF;
+    transition: width 0.3s ease;
+}
+
+.nav a:hover::after {
+    width: 100%;
+}
+
+.nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #0071FF;
+    transition: width 0.3s ease;
+}
+
+.nav a:hover::after {
+    width: 100%;
+    bottom: -3px;
+}
+
+.left-side {
+    display: flex;
+    gap: 10px;
+}
