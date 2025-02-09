@@ -46,6 +46,7 @@ const AppointmentForm = ({ onSubmit }: IProps) => {
   const [appointment, setAppointment] = useState<IAppointment>(initValue);
   const [openDialog, setOpenDialog] = useState(false);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const newAppointment = (filed: string, value: any) => {
     const Appoint = {
       ...appointment,
