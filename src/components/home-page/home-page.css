@@ -6,7 +6,7 @@
     box-sizing: border-box;
 }
 
-.container {
+.home_container {
     height: 100vh;
     background: linear-gradient(to right, #71b5fa 0%, #B6F8FF 49%, #82D3FF 100%);
     display: flex;

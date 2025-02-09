@@ -2,7 +2,7 @@ import docImage from '../../assets/doctorImg.png';
 import './home-page.css'
 const HomePage = () => {
     return(
-        <div className="container">
+        <div className="home_container">
             <div className="content">
                 <div className="text">
                     <h2 className="header">Providing the best <br /> online medical <br /> consultant.</h2>

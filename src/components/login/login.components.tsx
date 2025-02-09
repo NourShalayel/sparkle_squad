@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import "./login.css"; 
-import { UserRole } from "../../types";
+import { UserRole } from "../../types/type";
+import { loginSchema, signupSchema } from "../../utils/Validation";
 
-const PALESTINE_MOBILE_REGEXP: RegExp = /^0(56|59)\d{7}$/;
 interface FormValues {
   fullName?: string;
   email: string;
@@ -18,26 +17,11 @@ interface RegisterUser {
   onSubmit: (data: FormValues, isSignup: boolean) => void;
 }
 
-const signupSchema = yup.object().shape({
-  fullName: yup.string().required("Full Name is required"),
-  email: yup.string().email("Invalid email format").required("Email is required"),
-  phone: yup.string().matches(PALESTINE_MOBILE_REGEXP, "Invalid phone number").required("Phone is required"),
-  password: yup.string().required("Password is required").min(3, "Password must be at least 3 characters"),
-  role: yup.mixed<UserRole>().oneOf(Object.values(UserRole), 'invalid role').required("Role is Required")
-});
-
-const loginSchema = yup.object().shape({
-  email: yup.string().email("Invalid email format").required("Email is required"),
-  password: yup.string().required("Password is required"),
-});
 
 const Register = ({ onSubmit }: RegisterUser) => {
-
   const [isSignup, setIsSignup] = useState(true);
   const schema = isSignup ? signupSchema : loginSchema;
-
   const {handleSubmit, register, reset, formState: { errors }} = useForm<FormValues>({ resolver: yupResolver(schema) });
-
   const onSubmitData = (data: FormValues) => {
     onSubmit(data, isSignup);
     reset();

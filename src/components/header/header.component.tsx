@@ -16,7 +16,7 @@ const Header = (props: IProps) => {
                 </div>
                 <div className="nav">
                     <div><Link to="/">Home</Link></div>
-                    <div><Link to="">Service</Link></div>
+                    <div><Link to="/services">Service</Link></div>
                     <div><Link to="/appointment">Appointment</Link></div>
                 </div>
                 <div className="left-side">
