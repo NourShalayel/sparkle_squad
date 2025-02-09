@@ -1,3 +1,8 @@
+export interface IDoctors {
+    img:string;
+    id: number;  
+    name: string;
+    specialty:string;}
 export interface User {
     fullName?: string;
     email: string;
