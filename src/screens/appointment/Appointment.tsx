@@ -11,7 +11,7 @@ const Appointment = () => {
   };
   return (
     <>
-      <section className="bg-[linear-gradient(25deg,#77BAFB_20%,#B3F4FE_60%,#84D4FF_90%)] pt-8">
+      <section className="bg-[linear-gradient(to_right,#71b5fa_0%,#B6F8FF_49%,#82D3FF_100%)] pt-8">
         <div className="wrapper flex flex-col md:flex-row justify-center items-center container mx-auto px-6 md:gap-5">
           {/* Left */}
           <div className="w-full md:w-1/2">
