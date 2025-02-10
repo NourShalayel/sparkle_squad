@@ -1,0 +1,74 @@
+.department-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 20px;
+    max-width: 1000px;
+    margin: auto;
+    position: relative;
+}
+
+.department-header {
+    background: #84cbff;
+    width: 100%;
+    padding: 50px 0;
+    text-align: center;
+    border-radius: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    position: relative;
+    height: 160px;
+}
+
+.department-list {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: -50px;  
+}
+
+.department-item {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 160px;
+    height: 160px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.department-item .icon {
+    font-size: 40px;
+    color: #2196f3;
+    margin-bottom: 10px;
+    transition: 0.3s;
+}
+
+
+.department-item p {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+}
+
+
+.department-item:hover {
+    background: #64b5f6;
+    color: white;
+    transform: translateY(-5px);
+}
+
+.department-item:hover .icon {
+    color: white;
+}
