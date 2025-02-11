@@ -1,20 +1,21 @@
 
 import { Link } from "react-router-dom";
-import "./Services.css";
+import img from  "../../../src/assets/img/1.jpg";
+
 const Services = () => {
     const doctors = [
-        { id: 1, name: 'Dr. Ahmed Ali', specialty: 'Cardiologist', image: "../../assets/img/1.jpg" },
-        { id: 2, name: 'Dr. John Smith', specialty: 'Neurologist', image: "../../assets/img/2.jpg" },
-        { id: 3, name: 'Dr. Sara Ahmed', specialty: 'Dermatologist', image: "../../assets/img/3.webp" },
-        { id: 4, name: 'Dr. Emily White', specialty: 'Orthopedic', image: "../../assets/img/4.avif" },
-        { id: 5, name: 'Dr. Olivia Green', specialty: 'Psychiatrist', image: "../../assets/img/5.jpg" },
-        { id: 6, name: 'Dr. Ali Ahmed', specialty: 'Pediatrician', image: "../../assets/img/6.webp" },
-        { id: 7, name: 'Dr. Noor Hassan', specialty: 'Cardiologist', image: "../../assets/img/7.jpg" },
-        { id: 8, name: 'Dr. Khaled Omar', specialty: 'Neurologist', image: "../../assets/img/8.jpg" },
-        { id: 9, name: 'Dr. Layla Karim', specialty: 'Dermatologist', image: "../../assets/img/9.jpg" },
-        { id: 10, name: 'Dr. Hana Ibrahim', specialty: 'Orthopedic', image: "../../assets/img/10.jpg" },
-        { id: 11, name: 'Dr. Ola Green', specialty: 'Psychiatrist', image: "../../assets/img/11.jpg" },
-        { id: 12, name: 'Dr. Omar Fathy', specialty: 'Pediatrician', image: "../../assets/img/12.webp" },
+        { id: 1, name: 'Dr. Ahmed Ali', specialty: 'Cardiologist', image: "../../../src/assets/img/1.jpg" },
+        { id: 2, name: 'Dr. John Smith', specialty: 'Neurologist', image: "../../../src/assets/img/2.jpg" },
+        { id: 3, name: 'Dr. Sara Ahmed', specialty: 'Dermatologist', image: "../../../src/assets/img/3.webp" },
+        { id: 4, name: 'Dr. Emily White', specialty: 'Orthopedic', image: "../../../src/assets/img/4.avif" },
+        { id: 5, name: 'Dr. Olivia Green', specialty: 'Psychiatrist', image: "../../../src/assets/img/5.jpg" },
+        { id: 6, name: 'Dr. Ali Ahmed', specialty: 'Pediatrician', image: "../../../src/assets/img/6.webp" },
+        { id: 7, name: 'Dr. Noor Hassan', specialty: 'Cardiologist', image: "../../../src/assets/img/7.jpg" },
+        { id: 8, name: 'Dr. Khaled Omar', specialty: 'Neurologist', image: "../../../src/assets/img/8.jpg" },
+        { id: 9, name: 'Dr. Layla Karim', specialty: 'Dermatologist', image: "../../../src/assets/img/9.jpg" },
+        { id: 10, name: 'Dr. Hana Ibrahim', specialty: 'Orthopedic', image: "../../../src/assets/img/10.jpg" },
+        { id: 11, name: 'Dr. Ola Green', specialty: 'Psychiatrist', image: "../../../src/assets/img/11.jpg" },
+        { id: 12, name: 'Dr. Omar Fathy', specialty: 'Pediatrician', image: "../../../src/assets/img/12.webp" },
     ];
 
     return (
@@ -39,11 +40,7 @@ const Services = () => {
                             <button className="bg-cyan-500 text-white py-2 px-6 w-full rounded-lg hover:bg-cyan-600 transition duration-200 shadow-md">
                                 Book an appointment
                             </button>
-                            <Link
-                                to={`/services/${doctor.id}`}
-                                state={doctor}
-                                className="bg-cyan-600 text-white py-2 px-6 w-full rounded-lg hover:bg-cyan-700 transition duration-200 block text-center shadow-md"
-                            >
+                            <Link to={`/services/${doctor.id}`} state={doctor} className="bg-cyan-600 text-white py-2 px-6 w-full rounded-lg hover:bg-cyan-700 transition duration-200 block text-center shadow-md">
                                 View Details
                             </Link>
                         </div>
