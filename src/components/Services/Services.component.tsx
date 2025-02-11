@@ -1,6 +1,5 @@
 
 import { Link } from "react-router-dom";
-import img from  "../../../src/assets/img/1.jpg";
 
 const Services = () => {
     const doctors = [
