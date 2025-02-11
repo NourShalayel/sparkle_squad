@@ -50,37 +50,37 @@ const AppointmentForm = ({ onSubmit }: IProps) => {
   const {
     register,
     handleSubmit,
+    reset,
+    setValue, 
     formState: { errors },
   } = useForm<IAppointment>({ resolver: yupResolver(AppointmentSchema) });
 
   const handleConfirmation = () => {
-    onSubmit(appointment); 
+    onSubmit(appointment);
     console.log(appointment);
-    setAppointment(initValue); 
-    setOpenDialog(false); 
+    reset();
+    setAppointment(initValue);
+    setOpenDialog(false);
   };
 
   const handleDateChange = (date: dayjs.Dayjs | null) => {
-    setAppointment({
-      ...appointment,
-      pickDate: date ? date.format("YYYY-MM-DD") : "",
-    });
+    const dateString = date ? date.format("YYYY-MM-DD") : "";
+    setAppointment({ ...appointment, pickDate: dateString });
+    setValue("pickDate", dateString, { shouldValidate: true });
   };
 
   const handleTimeChange = (time: dayjs.Dayjs | null) => {
-    setAppointment({
-      ...appointment,
-      pickTime: time ? time.format("HH:mm") : "",
-    });
+    const timeString = time ? time.format("HH:mm") : "";
+    setAppointment({ ...appointment, pickTime: timeString });
+    setValue("pickTime", timeString, { shouldValidate: true });
   };
 
   const handleChange = (field: string, value: any) => {
     setAppointment({ ...appointment, [field]: value });
+    setValue(field, value,{ shouldValidate: true });
   };
 
-
-  const onSubmitForm = () => {
-
+  const onSubmitForm = (data: IAppointment) => {
     if (Object.keys(errors).length === 0) {
       setOpenDialog(true);
     }
