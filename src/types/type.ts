@@ -1,6 +1,6 @@
 export interface IAppointment {
     userName: string;
-    patientPhone: number,
+    patientPhone: string,
     age: number,
     gender: string,
     reason: string;  

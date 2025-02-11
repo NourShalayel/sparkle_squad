@@ -2,12 +2,9 @@ import * as yup from "yup";
 import { UserRole } from "../types/type";
 const PALESTINE_MOBILE_REGEXP: RegExp = /^0(56|59)\d{7}$/;
 
-export const schema = yup.object({
+export const AppointmentSchema = yup.object({
   userName: yup.string().required("Name is required"),
-  patientPhone: yup
-    .string()
-    .matches(/^\d{10}$/, "Phone number must be 10 digits")
-    .required("Phone number is required"),
+  patientPhone:  yup.string().matches(PALESTINE_MOBILE_REGEXP, "Invalid phone number").required("Phone is required"),
   age: yup.number().positive().integer().required("Age is required"),
   gender: yup.string().required("Gender is required"),
   reason: yup.string().required("Reason for visit is required"),
