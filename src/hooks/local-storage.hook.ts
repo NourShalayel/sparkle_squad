@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 
-const useLocalStorage = <T>(key: string, initialState: T): [T, React.Dispatch<React.SetStateAction<T>>] => {
-  const [storedData, setStoredData] = useState<T>(() => {
+const useLocalStorage = <T>(key: string, initialState: T[]): [T[], React.Dispatch<React.SetStateAction<T[]>>] => {
+  const [storedData, setStoredData] = useState<T[]>(() => {
     try {
       const strData = localStorage.getItem(key);
-      return strData ? JSON.parse(strData) : initialState;
+      return strData ? JSON.parse(strData) : initialState; 
     } catch {
       return initialState;
     }
@@ -12,7 +12,7 @@ const useLocalStorage = <T>(key: string, initialState: T): [T, React.Dispatch<Re
 
   useEffect(() => {
     try {
-      localStorage.setItem(key, JSON.stringify(storedData));
+      localStorage.setItem(key, JSON.stringify(storedData)); 
     } catch (error) {
       console.error("Failed to save to local storage:", error);
     }
