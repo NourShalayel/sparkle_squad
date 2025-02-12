@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import useLocalStorage from "./local-storage.hook";
-import { User } from "../types";
+import { User } from "../types/type";
 
 const UserAuthentication = () => {
   const [users, setUsers] = useLocalStorage<User[]>("users", []);
