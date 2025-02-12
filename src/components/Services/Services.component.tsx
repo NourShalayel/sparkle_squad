@@ -1,6 +1,5 @@
 
 import { Link } from "react-router-dom";
-
 const Services = () => {
     const doctors = [
         { id: 1, name: 'Dr. Ahmed Ali', specialty: 'Cardiologist', image: "../../../src/assets/img/1.jpg" },
@@ -37,6 +36,7 @@ const Services = () => {
                         <p className="text-gray-500 text-lg mt-2">{doctor.specialty}</p>
                         <div className="mt-5 space-y-3">
                             <button className="bg-cyan-500 text-white py-2 px-6 w-full rounded-lg hover:bg-cyan-600 transition duration-200 shadow-md">
+                            <Link to="/appointment" className="bg-cyan-500 text-white py-2 px-6 w-full rounded-lg hover:bg-cyan-600 transition"></Link>
                                 Book an appointment
                             </button>
                             <Link to={`/services/${doctor.id}`} state={doctor} className="bg-cyan-600 text-white py-2 px-6 w-full rounded-lg hover:bg-cyan-700 transition duration-200 block text-center shadow-md">
