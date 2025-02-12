@@ -122,3 +122,7 @@ form input, form select, form button {
 .singin {
     margin-bottom: 10px;
 }
+.error-msg{
+    color: red;
+    margin: auto;
+}
