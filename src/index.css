@@ -14,4 +14,9 @@
 html,body{
     background-color: white;
 }
-/*  shadow-md shadow-[#6295b1] */
+
+/* to remove scroll in Time Picker  */
+:where(.css-dev-only-do-not-override-xex5fb).ant-picker-dropdown .ant-picker-time-panel-column::after {
+    display: none;
+}
+

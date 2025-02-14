@@ -8,7 +8,7 @@ import "antd/dist/reset.css";
 import { useForm } from "react-hook-form";
 import { AppointmentSchema } from "../../utils/Validation";
 import { yupResolver } from "@hookform/resolvers/yup";
-
+import { Bounce, toast } from "react-toastify";
 const reasonsToVisit: string[] = [
   "General Checkup",
   "Follow-up Appointment",
@@ -33,7 +33,7 @@ const departments: string[] = [
 ];
 const initValue = {
   userName: "",
-  patientPhone:"",
+  patientPhone: "",
   age: 0,
   gender: "",
   reason: "",
@@ -51,14 +51,24 @@ const AppointmentForm = ({ onSubmit }: IProps) => {
     register,
     handleSubmit,
     reset,
-    setValue, 
+    setValue,
     formState: { errors },
   } = useForm<IAppointment>({ resolver: yupResolver(AppointmentSchema) });
 
   const handleConfirmation = () => {
     onSubmit(appointment);
-    console.log(appointment);
-    reset();
+    toast.success('Your Appointment booked successfully!', {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+      transition: Bounce,
+      })
+      reset()
     setAppointment(initValue);
     setOpenDialog(false);
   };
@@ -74,18 +84,47 @@ const AppointmentForm = ({ onSubmit }: IProps) => {
     setAppointment({ ...appointment, pickTime: timeString });
     setValue("pickTime", timeString, { shouldValidate: true });
   };
-
-  const handleChange = (field: string, value: any) => {
-    setAppointment({ ...appointment, [field]: value });
-    setValue(field, value,{ shouldValidate: true });
+  const isDuplicateAppointment = (newAppointment: IAppointment): boolean => {
+    const existingAppointments: IAppointment[] = JSON.parse(
+      localStorage.getItem("Appointment-Info") || "[]"
+    );
+    return existingAppointments.some(
+      (appointment) =>
+        appointment.pickDate === newAppointment.pickDate &&
+        appointment.pickTime === newAppointment.pickTime
+    );
   };
 
   const onSubmitForm = (data: IAppointment) => {
-    if (Object.keys(errors).length === 0) {
-      setOpenDialog(true);
+    if (isDuplicateAppointment(data)) {
+        toast.error('This appointment is already booked!', {
+          position: "bottom-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          transition: Bounce,
+          });
+    return;
     }
+    const existingAppointments: IAppointment[] = JSON.parse(
+      localStorage.getItem("Appointment-Info") || "[]"
+    );
+    const updatedAppointments = [...existingAppointments, data];
+    localStorage.setItem("Appointment-Info", JSON.stringify(updatedAppointments));
+    setAppointment(data);
+    setOpenDialog(true);
   };
 
+  const getDisabledHours = () => {
+    const hours = [...Array(24)].map((_, i) => i);
+    return {
+      disabledHours: () => hours.filter((hour) => hour < 9 || hour >= 19),
+    };
+  };
   return (
     <form className="wrapper" onSubmit={handleSubmit(onSubmitForm)}>
       <div className="border rounded-2xl m-auto p-10 ">
@@ -101,8 +140,6 @@ const AppointmentForm = ({ onSubmit }: IProps) => {
               type="text"
               placeholder="Type here"
               className="custom_input"
-              value={appointment.userName}
-              onChange={(e) => handleChange("userName", e.target.value)}
             />
             {errors.userName && (
               <p className="text-red-500 text-sm">{errors.userName.message}</p>
@@ -115,11 +152,11 @@ const AppointmentForm = ({ onSubmit }: IProps) => {
               type={"text"}
               placeholder="Type here"
               className="custom_input"
-              value={appointment.patientPhone}
-              onChange={(e) => handleChange("patientPhone", e.target.value)}
             />
             {errors.patientPhone && (
-              <p className="text-red-500 text-sm">{errors.patientPhone.message}</p>
+              <p className="text-red-500 text-sm">
+                {errors.patientPhone.message}
+              </p>
             )}
           </label>
         </div>
@@ -129,8 +166,7 @@ const AppointmentForm = ({ onSubmit }: IProps) => {
             <select
               {...register("gender")}
               className="form-select custom_input"
-              value={appointment.gender}
-              onChange={(e) => handleChange("gender", e.target.value)}
+              defaultValue=""
             >
               <option value="" disabled>
                 Select Gender
@@ -150,8 +186,6 @@ const AppointmentForm = ({ onSubmit }: IProps) => {
               type={"text"}
               placeholder="Type here"
               className="custom_input"
-              value={appointment.age}
-              onChange={(e) => handleChange("age", e.target.value)}
             />
             {errors.age && (
               <p className="text-red-500 text-sm">{errors.age.message}</p>
@@ -164,8 +198,7 @@ const AppointmentForm = ({ onSubmit }: IProps) => {
             <select
               {...register("reason")}
               className="form-select custom_input"
-              value={appointment.reason}
-              onChange={(e) => handleChange("reason", e.target.value)}
+              defaultValue=""
             >
               <option value="" disabled>
                 Select one
@@ -186,8 +219,7 @@ const AppointmentForm = ({ onSubmit }: IProps) => {
             <select
               {...register("department")}
               className="form-select custom_input"
-              value={appointment.department}
-              onChange={(e) => handleChange("department", e.target.value)}
+              defaultValue=""
             >
               <option value="" disabled>
                 Select one
@@ -199,7 +231,9 @@ const AppointmentForm = ({ onSubmit }: IProps) => {
               ))}
             </select>
             {errors.department && (
-              <p className="text-red-500 text-sm">{errors.department.message}</p>
+              <p className="text-red-500 text-sm">
+                {errors.department.message}
+              </p>
             )}
           </label>
         </div>
@@ -228,12 +262,16 @@ const AppointmentForm = ({ onSubmit }: IProps) => {
                   ? dayjs(appointment.pickTime, "HH:mm")
                   : null
               }
+              defaultValue={dayjs("09:00", "HH:mm")}
+              disabledTime={getDisabledHours}
               onChange={handleTimeChange}
               format="HH:mm"
+              showNow={false}
+              hideDisabledOptions={true}
               allowClear
               minuteStep={30}
               use12Hours
-              className="custom_input w-full"
+              className="custom_input w-full "
             />
             {errors.pickTime && (
               <p className="text-red-500 text-sm">{errors.pickTime.message}</p>
