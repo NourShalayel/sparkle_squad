@@ -1,3 +1,5 @@
+import { string } from "yup";
+
 export interface IAppointment {
     userName: string;
     patientPhone: number,
@@ -7,6 +9,9 @@ export interface IAppointment {
     department: string;
     pickDate: string; 
     pickTime: string;  
+    id?:number;
+    status?:string;
+    message?:string;
 }
 
 export interface IDoctors {
