@@ -1,24 +1,31 @@
-import { IAppointment } from "../../types/type";
+import { useState } from "react";
 import { Divider, Empty, Typography } from "antd";
 import { CalendarBlank, Envelope, Phone } from "@phosphor-icons/react";
 import { Link } from "react-router-dom";
+import { IAppointment } from "../../types/type";
 
 const PatientDashboard = () => {
   const loggedInUser = JSON.parse(
     localStorage.getItem("loggedInUser") || "null"
   );
-  const appointment: IAppointment[] = JSON.parse(
-    localStorage.getItem("Appointment-Info") || "[]"
+  const [appointments, setAppointments] = useState<IAppointment[]>(
+    JSON.parse(localStorage.getItem("Appointment-Info") || "[]")
   );
-  const userAppointment = appointment.filter(
-    (user) => user.userId === loggedInUser.id
+
+  const userAppointment = appointments.filter(
+    (appointment) => appointment.userId === loggedInUser.id
   );
-  console.log(userAppointment);
+
+  const handleCancel = (index: number) => {
+    const updatedAppointments = appointments.filter((_, i) => i !== index);
+    localStorage.setItem("Appointment-Info", JSON.stringify(updatedAppointments));
+    setAppointments(updatedAppointments);
+  };
 
   return (
     <div className="wrapper">
       {/* User Info Section */}
-      {loggedInUser && appointment && (
+      {loggedInUser && appointments && (
         <div className="bg-white shadow-lg rounded-lg mx-auto mt-6 max-w-2xl hover:shadow-xl transition-shadow duration-300 items-center flex p-2">
           <div className="avatar flex justify-center mt-6">
             <div className="rounded-full w-32 h-32 overflow-hidden shadow-md border-4 border-primary">
@@ -61,13 +68,14 @@ const PatientDashboard = () => {
                 </div>
                 <Divider className="my-2" />
                 <p className="text-lg text-gray-700 font-medium mt-1">
-                  {appointment[0]?.age || "N/A"}
+                  {appointments[0]?.age || "N/A"}
                 </p>
               </div>
             </div>
           </div>
         </div>
       )}
+
       {/* Appointment Details */}
       {userAppointment.length > 0 ? (
         <div className="overflow-x-auto mt-16">
@@ -79,7 +87,7 @@ const PatientDashboard = () => {
                 <th>Gender</th>
                 <th>Age</th>
                 <th>Appointment Date</th>
-                <th>Appointment time</th>
+                <th>Appointment Time</th>
                 <th>Cancel Appointment</th>
               </tr>
             </thead>
@@ -93,7 +101,10 @@ const PatientDashboard = () => {
                   <td>{appointment.pickDate}</td>
                   <td>{appointment.pickTime}</td>
                   <td>
-                    <button className="btn btn-active bg-red-700 text-white hover:bg-white hover:text-red-700 hover:border hover:border-red-700 w-1/3">
+                    <button
+                      onClick={() => handleCancel(index)}
+                      className="btn btn-active bg-red-700 text-white hover:bg-white hover:text-red-700 hover:border hover:border-red-700 w-1/3"
+                    >
                       Cancel
                     </button>
                   </td>
@@ -105,7 +116,7 @@ const PatientDashboard = () => {
       ) : (
         <div className="flex mt-10">
           <Empty
-            className="m-auto "
+            className="m-auto"
             styles={{ image: { height: 260 } }}
             image="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
             description={
@@ -116,7 +127,7 @@ const PatientDashboard = () => {
           >
             <Link
               to={"/appointment"}
-              className="btn btn-active bg-blue-600 text-white hover:bg-white hover:text-blue-600 hover:border hover:border-blue-600 "
+              className="btn btn-active bg-blue-600 text-white hover:bg-white hover:text-blue-600 hover:border hover:border-blue-600"
             >
               Book now
             </Link>
@@ -126,4 +137,5 @@ const PatientDashboard = () => {
     </div>
   );
 };
+
 export default PatientDashboard;
