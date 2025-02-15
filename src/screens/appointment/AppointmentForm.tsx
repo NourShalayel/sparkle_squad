@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { AppointmentSchema } from "../../utils/Validation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Bounce, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 const reasonsToVisit: string[] = [
   "General Checkup",
   "Follow-up Appointment",
@@ -35,6 +36,7 @@ interface IProps {
 const AppointmentForm = ({ onSubmit }: IProps) => {
   const [appointment, setAppointment] = useState<IAppointment>(initValue);
   const [openDialog, setOpenDialog] = useState(false);
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -67,6 +69,9 @@ const AppointmentForm = ({ onSubmit }: IProps) => {
     reset();
     setAppointment(initValue);
     setOpenDialog(false);
+    setTimeout(() => {
+      navigate("/patient-dashboard");
+    }, 2000);
   };
 
   const handleDateChange = (date: dayjs.Dayjs | null) => {
@@ -92,7 +97,7 @@ const AppointmentForm = ({ onSubmit }: IProps) => {
   };
 
   const onSubmitForm = (data: IAppointment) => {
-    console.log('Form submitted:', data);
+    console.log("Form submitted:", data);
     const loggedInUser = JSON.parse(
       localStorage.getItem("loggedInUser") || "null"
     );
@@ -268,7 +273,6 @@ const AppointmentForm = ({ onSubmit }: IProps) => {
         </div>
         <div className="flex justify-center md:justify-start">
           <button
-            onClick={handleSubmit(onSubmitForm)}
             type="submit"
             className="custom-btn btn mt-10 bg-[#9ee5ff] text-mainText border-none text-lg shadow-sm shadow-[#6295b1]"
           >
