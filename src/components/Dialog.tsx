@@ -20,20 +20,20 @@ const Dialog = ({ appointment, onSubmitForm, onClose }: DialogProps) => {
           <strong>Gender:</strong> {appointment.gender} <br />
           <strong>Age:</strong> {appointment.age} <br />
           <strong>Reason:</strong> {appointment.reason} <br />
-          <strong>Department:</strong> {appointment.department} <br />
+          <strong>Description:</strong> {appointment.description} <br />
           <strong>Date:</strong> {appointment.pickDate} <br />
           <strong>Time:</strong> {appointment.pickTime}
         </p>
         <div className="modal-action">
           <button
             onClick={onSubmitForm}
-            className="btn bg-green-500 text-white border-none text-lg shadow-sm shadow-[#6295b1]"
+            className="custom-btn btn bg-green-500 text-white border-none text-lg shadow-sm shadow-[#6295b1]"
           >
             Confirm
           </button>
           <button
             onClick={handleClose}
-            className="btn  text-mainText border-none text-lg shadow-sm shadow-[#6295b1]"
+            className="custom-btn btn  text-mainText border-none text-lg shadow-sm shadow-[#6295b1]"
           >
             Cancel
           </button>

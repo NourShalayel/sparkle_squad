@@ -1,13 +1,16 @@
-import React from "react";
+
 import doctorImg from "../../assets/contactUs-bg.png";
 import AppointmentForm from "./AppointmentForm";
 import ContactUs from "../contactUs/ContactUs";
 import { IAppointment } from "../../types/type";
+import useLocalStorage from "../../hooks/local-storage.hook";
 
 const Appointment = () => {
+  const [appointments, setAppointments]=useLocalStorage<IAppointment>("Appointment-Info",[])
   const handleAppointment = (newAppoint: IAppointment) => {
-    console.log("Hi from parent", newAppoint);
-    localStorage.setItem("Appointment-Info", JSON.stringify(newAppoint));
+    setAppointments([...appointments, newAppoint]);
+    console.log('Hi form parent',newAppoint);
+    
   };
   return (
     <>
