@@ -12,6 +12,7 @@ import Header from "./components/header/header.component";
 import Appointment from "./screens/appointment/Appointment";
 import Services from "./components/Services/Services.component";
 import Doctor from "./screens/doctor.screen";
+import PatientDashboard from "./screens/dashboard/PatientDashboard";
 
 function App() {
   const { loggedInUser, handleAuthentication, handleLogout } =
@@ -37,6 +38,7 @@ function App() {
           }
         />
         <Route path="/appointment" element={ loggedInUser ?<Appointment />: <Navigate to="/login" />} />
+        <Route path="/patient-dashboard" element={ loggedInUser ?<PatientDashboard />: <Navigate to="/login" />} />
         <Route path="/services" element={ loggedInUser ?<Services />: <Navigate to="/login" />} />
         <Route path="/services/:id" element={<Doctor />} />
         <Route path="*" element={<NotFound />} />

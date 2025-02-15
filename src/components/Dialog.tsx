@@ -27,13 +27,13 @@ const Dialog = ({ appointment, onSubmitForm, onClose }: DialogProps) => {
         <div className="modal-action">
           <button
             onClick={onSubmitForm}
-            className="btn bg-green-500 text-white border-none text-lg shadow-sm shadow-[#6295b1]"
+            className="custom-btn btn bg-green-500 text-white border-none text-lg shadow-sm shadow-[#6295b1]"
           >
             Confirm
           </button>
           <button
             onClick={handleClose}
-            className="btn  text-mainText border-none text-lg shadow-sm shadow-[#6295b1]"
+            className="custom-btn btn  text-mainText border-none text-lg shadow-sm shadow-[#6295b1]"
           >
             Cancel
           </button>

@@ -8,7 +8,7 @@ export const AppointmentSchema = yup.object({
   age: yup.number().positive().integer().required("Age is required"),
   gender: yup.string().required("Gender is required"),
   reason: yup.string().required("Reason for visit is required"),
-  department: yup.string().required("Department is required"),
+  description: yup.string().required("description is required"),
   pickDate: yup.string().required("Appointment date is required"),
   pickTime: yup.string().required("Appointment time is required"),
 });

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import useLocalStorage from "./local-storage.hook";
-import { User } from "../types";
-
+import { User } from "../types/type";
+import { v4 as uuidv4 } from 'uuid';
 const UserAuthentication = () => {
   const [users, setUsers] = useLocalStorage<User[]>("users", []);
   const [loggedInUser, setLoggedInUser] = useLocalStorage<User | null>("loggedInUser", null);
@@ -19,8 +19,9 @@ const UserAuthentication = () => {
         alert("User already exists! Please log in.");
         return;
       }
-      setUsers([...users, data]);
-      setLoggedInUser(data);
+      const newUser = { ...data, id: uuidv4() };
+      setUsers([...users, newUser]);
+      setLoggedInUser(newUser);
     } else {
       if (!existingUser || existingUser.password !== data.password) {
         alert("Invalid email or password!");

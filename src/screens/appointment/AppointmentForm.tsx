@@ -19,25 +19,13 @@ const reasonsToVisit: string[] = [
   "Emergency Visit",
   "Physical Therapy",
 ];
-const departments: string[] = [
-  "General Medicine",
-  "Pediatrics",
-  "Cardiology",
-  "Dermatology",
-  "Orthopedics",
-  "Neurology",
-  "Ophthalmology",
-  "Dentistry",
-  "ENT (Ear, Nose, Throat)",
-  "Gynecology",
-];
 const initValue = {
   userName: "",
   patientPhone: "",
   age: 0,
   gender: "",
   reason: "",
-  department: "",
+  description: "",
   pickDate: "",
   pickTime: "",
 };
@@ -57,7 +45,15 @@ const AppointmentForm = ({ onSubmit }: IProps) => {
 
   const handleConfirmation = () => {
     onSubmit(appointment);
-    toast.success('Your Appointment booked successfully!', {
+    const existingAppointments: IAppointment[] = JSON.parse(
+      localStorage.getItem("Appointment-Info") || "[]"
+    );
+    const updatedAppointments = [...existingAppointments, appointment];
+    localStorage.setItem(
+      "Appointment-Info",
+      JSON.stringify(updatedAppointments)
+    );
+    toast.success("Your Appointment booked successfully!", {
       position: "bottom-center",
       autoClose: 5000,
       hideProgressBar: false,
@@ -67,8 +63,8 @@ const AppointmentForm = ({ onSubmit }: IProps) => {
       progress: undefined,
       theme: "colored",
       transition: Bounce,
-      })
-      reset()
+    });
+    reset();
     setAppointment(initValue);
     setOpenDialog(false);
   };
@@ -96,26 +92,27 @@ const AppointmentForm = ({ onSubmit }: IProps) => {
   };
 
   const onSubmitForm = (data: IAppointment) => {
-    if (isDuplicateAppointment(data)) {
-        toast.error('This appointment is already booked!', {
-          position: "bottom-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-          transition: Bounce,
-          });
-    return;
-    }
-    const existingAppointments: IAppointment[] = JSON.parse(
-      localStorage.getItem("Appointment-Info") || "[]"
+    console.log('Form submitted:', data);
+    const loggedInUser = JSON.parse(
+      localStorage.getItem("loggedInUser") || "null"
     );
-    const updatedAppointments = [...existingAppointments, data];
-    localStorage.setItem("Appointment-Info", JSON.stringify(updatedAppointments));
-    setAppointment(data);
+    const userData = { ...data, userId: loggedInUser.id };
+
+    if (isDuplicateAppointment(data)) {
+      toast.error("This appointment is already booked!", {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+      });
+      return;
+    }
+    setAppointment(userData);
     setOpenDialog(true);
   };
 
@@ -215,24 +212,15 @@ const AppointmentForm = ({ onSubmit }: IProps) => {
           </label>
 
           <label className="form-control w-full mt-4">
-            Department
-            <select
-              {...register("department")}
-              className="form-select custom_input"
-              defaultValue=""
-            >
-              <option value="" disabled>
-                Select one
-              </option>
-              {departments.map((option) => (
-                <option key={option} value={option}>
-                  {option}
-                </option>
-              ))}
-            </select>
-            {errors.department && (
+            Description
+            <textarea
+              {...register("description")}
+              placeholder="Type here"
+              className="custom_input mt-2 py-3"
+            />
+            {errors.description && (
               <p className="text-red-500 text-sm">
-                {errors.department.message}
+                {errors.description.message}
               </p>
             )}
           </label>
@@ -280,8 +268,9 @@ const AppointmentForm = ({ onSubmit }: IProps) => {
         </div>
         <div className="flex justify-center md:justify-start">
           <button
+            onClick={handleSubmit(onSubmitForm)}
             type="submit"
-            className="btn mt-10 bg-[#9ee5ff] text-mainText border-none text-lg shadow-sm shadow-[#6295b1]"
+            className="custom-btn btn mt-10 bg-[#9ee5ff] text-mainText border-none text-lg shadow-sm shadow-[#6295b1]"
           >
             Submit
             <ArrowRight size={23} />
