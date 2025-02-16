@@ -1,26 +1,28 @@
 export interface IAppointment {
-  userId?:string,
-  userName: string;
-  patientPhone: string;
-  age: number;
-  gender: string;
-  reason: string;
-  description: string;
-  pickDate: string;
-  pickTime: string;
+    userName: string;
+    patientPhone: number,
+    age: number,
+    gender: string,
+    reason: string;  
+    department: string;
+    pickDate: string; 
+    pickTime: string;  
+    id?:number;
+    status?:string;
+    message?:string;
 }
 
 export interface IDoctors {
   img: string;
-  id: number;
-  name: string;
+    id: number;  
+    name: string;
   specialty: string;
 }
 export interface User {
   id: string;
   phone?: string;
-  fullName?: string;
-  email: string;
+    fullName?: string;
+    email: string;
   password?: string;
   role?: UserRole;
 }
