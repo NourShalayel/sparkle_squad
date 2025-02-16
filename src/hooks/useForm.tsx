@@ -83,7 +83,7 @@ const CustomUseForm = (onSubmit: (newAppoint: IAppointment) => void) => {
     setAppointment(initValue);
     setOpenDialog(false);
     setTimeout(() => {
-      navigate("/patient-dashboard");
+      navigate("/dashboard");
     }, 2000);
   };
 
