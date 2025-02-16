@@ -17,7 +17,6 @@ const NotFound = () => {
           className="w-3/4"
         />
       </div>
-
       {/* Right Section - Text and Button */}
       <div className="lg:w-1/2 text-center lg:text-left mt-8 lg:mt-0 lg:ml-12">
         <h1 className="text-[200px] font-bold text-blue-700 mb-4">404</h1>

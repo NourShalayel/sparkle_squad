@@ -13,7 +13,7 @@ interface IProps {
 export const AppointmentsContext = createContext<IStateContext | null>(null);
 
 export const AppointmentsProvider = (props: IProps) => {
-  const [appointments, setAppointments] = useLocalStorage<IAppointment>(
+  const [appointments, setAppointments] = useLocalStorage<IAppointment[]>(
     "Appointment-Info",
     []
   );

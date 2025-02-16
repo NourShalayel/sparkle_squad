@@ -13,7 +13,7 @@ const PatientDashboard = () => {
   );
 
   const userAppointment = appointments.filter(
-    (appointment) => appointment.userId === loggedInUser.id
+    (appointment) => appointment.id === loggedInUser.id
   );
 
   const handleCancel = (index: number) => {
