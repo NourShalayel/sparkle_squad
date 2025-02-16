@@ -10,7 +10,6 @@ const Appointment = () => {
   const handleAppointment = (newAppoint: IAppointment) => {
     setAppointments([...appointments, newAppoint]);
     console.log('Hi form parent',newAppoint);
-    
   };
   return (
     <>

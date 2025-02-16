@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { bookingItems } from "../../data/data";
 import "./booking-info.css";
 
@@ -13,7 +14,7 @@ const BookingInfo = () => {
         </div>
       ))}
 
-      <button className="book-now">Book Now</button>
+      <button className="book-now"><Link to="/appointment">Book Now</Link></button>
     </div>
   );
 };
