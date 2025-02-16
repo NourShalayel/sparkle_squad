@@ -50,7 +50,7 @@ function App() {
           )}
         />
         <Route path="/services" element={ loggedInUser ? <Services />: <Navigate to="/login" />} />
-        <Route path="/services/:id" element={<Doctor />} />
+        <Route path="/services/:id" element={loggedInUser ? <Guarded roles={[UserRole.DOCTOR]}><Doctor /></Guarded> : <Navigate to="/login" />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

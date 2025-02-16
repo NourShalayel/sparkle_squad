@@ -7,11 +7,18 @@ import DoctorDashboardChart from "./DoctorDashboardChart";
 const DoctorDashboard = () => {
   const [appointments, setAppointments] = useLocalStorage<IAppointment[]>("Appointment-Info", []);
   const [todayAppointments, setTodayAppointments] = useState<IAppointment[]>([]);
-
+  const [pendingCount, setPendingCount] = useState(0);
+  const [confirmedCount, setConfirmedCount] = useState(0);
+  
   useEffect(() => {
     const today = new Date().toISOString().split("T")[0];
     const todayAppoint = appointments.filter((appointment) => appointment.pickDate === today);
     setTodayAppointments(todayAppoint);
+
+    const pendingAppoint = appointments.filter((appointments) => appointments.status === "Pending");
+    const confirmedAppoint = appointments.filter((appointments) => appointments.status === "Confirmed");
+    setConfirmedCount(confirmedAppoint.length);
+    setPendingCount(pendingAppoint.length);
   }, [appointments]);
 
   return (
@@ -25,8 +32,8 @@ const DoctorDashboard = () => {
 
           <div className="bg-white p-5 rounded-lg shadow w-1/3 text-center">
             <h3 className="text-gray-600">Pending vs. Confirmed</h3>
-            <p>Pending: -</p>
-            <p>Confirmed: -</p>
+            <p>Pending: {pendingCount}</p>
+            <p>Confirmed: {confirmedCount}</p>
           </div>
         </div>
 

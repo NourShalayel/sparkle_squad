@@ -1,7 +1,5 @@
-
 import { Link } from "react-router-dom";
 import "./Services.css";
-import { doctors } from "../../data/data";
 const Services = () => {
     const doctors = [
         { id: 1, name: 'Dr. Ahmed Ali', specialty: 'Cardiologist', image: "../../../src/assets/img/1.jpg" },
