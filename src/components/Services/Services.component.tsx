@@ -35,10 +35,13 @@ const Services = () => {
                         <h3 className="text-2xl font-semibold text-gray-800">{doctor.name}</h3>
                         <p className="text-gray-500 text-lg mt-2">{doctor.specialty}</p>
                         <div className="mt-5 space-y-3">
-                            <button className="bg-cyan-500 text-white py-2 px-6 w-full rounded-lg hover:bg-cyan-600 transition duration-200 shadow-md">
-                            <Link to="/appointment" className="bg-cyan-500 text-white py-2 px-6 w-full rounded-lg hover:bg-cyan-600 transition"></Link>
-                                Book an appointment
-                            </button>
+                        <Link
+                            to="/appointment"
+                            className="bg-cyan-500 text-white py-2 px-6 w-full rounded-lg hover:bg-cyan-600 transition duration-200 shadow-md text-center block"
+                        >
+                            Book an appointment
+                        </Link>
+
                             <Link
                                 to={`/services/${doctor.id}`}
                                 state={doctor}

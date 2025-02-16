@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { IAppointment } from "../types/type";
 import { useLocation } from "react-router-dom";
+import useLocalStorage from "../hooks/local-storage.hook";
 
 const Doctor = () => {
   const location = useLocation();
   const doctors = location.state;
-  const [appointment, setAppointment] = useState<IAppointment[]>([]);
+  const [appointment, setAppointment] = useLocalStorage<IAppointment[]>("Appointment-Info", []);
   const [name, setName] = useState<string>("");
   const [messages, setMessages] = useState<{ [key: number]: string }>({});
   const [statusFilter, setStatusFilter] = useState<string>("All");
@@ -49,13 +50,16 @@ const Doctor = () => {
     return dateB.getTime() - dateA.getTime();
   });
 
-  const handelButton = (index: number, status: string) => {
-    const allAppStatus = [...appointment];
-    allAppStatus[index] = { ...allAppStatus[index], status };
-    setAppointment(allAppStatus);
-    localStorage.setItem("Appointment-Info", JSON.stringify(allAppStatus));
-  };
-
+  const handelButton = (pickDate: string, pickTime: string, status: string) => {
+    setAppointment((prevAppointments) =>
+      prevAppointments.map((appointment) =>
+        appointment.pickDate === pickDate && appointment.pickTime === pickTime
+          ? { ...appointment, status }
+          : appointment
+      )
+    );
+  };  
+  
   const handleMessageChange = (
     index: number,
     e: React.ChangeEvent<HTMLInputElement>
@@ -63,6 +67,7 @@ const Doctor = () => {
     const newMessage = e.target.value;
     setMessages((prevMessages) => ({ ...prevMessages, [index]: newMessage }));
   };
+
   const saveMessage = (index: number) => {
     const updatedAppointments = [...appointment];
     updatedAppointments[index] = {
@@ -172,19 +177,19 @@ const Doctor = () => {
               <div className="flex gap-3 mt-5">
                 <button
                   className="px-5 py-2 rounded-lg font-medium shadow-md bg-yellow-500 text-white hover:bg-yellow-600 transition duration-200"
-                  onClick={() => handelButton(index, "Pending")}
+                  onClick={() => handelButton(appointment.pickDate, appointment.pickTime, "Pending")}
                 >
                   Pending
                 </button>
                 <button
                   className="px-5 py-2 rounded-lg font-medium shadow-md bg-green-500 text-white hover:bg-green-600 transition duration-200"
-                  onClick={() => handelButton(index, "Confirmed")}
+                  onClick={() => handelButton(appointment.pickDate, appointment.pickTime, "Confirmed")}
                 >
                   Confirmed
                 </button>
                 <button
                   className="px-5 py-2 rounded-lg font-medium shadow-md bg-blue-500 text-white hover:bg-blue-600 transition duration-200"
-                  onClick={() => handelButton(index, "Completed")}
+                  onClick={() => handelButton(appointment.pickDate, appointment.pickTime, "Completed")}
                 >
                   Completed
                 </button>
