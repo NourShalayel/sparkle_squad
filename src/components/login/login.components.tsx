@@ -2,8 +2,9 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import "./login.css"; 
-import { UserRole } from "../../types/type";
+import { User, UserRole } from "../../types/type";
 import { loginSchema, signupSchema } from "../../utils/Validation";
+import { v4 as uuidv4 } from "uuid";
 
 interface FormValues {
   fullName?: string;
@@ -14,7 +15,7 @@ interface FormValues {
 }
 
 interface RegisterUser {
-  onSubmit: (data: FormValues, isSignup: boolean) => void;
+  onSubmit: (data: User, isSignup: boolean) => void;
 }
 
 
@@ -23,7 +24,11 @@ const Register = ({ onSubmit }: RegisterUser) => {
   const schema = isSignup ? signupSchema : loginSchema;
   const {handleSubmit, register, reset, formState: { errors }} = useForm<FormValues>({ resolver: yupResolver(schema) });
   const onSubmitData = (data: FormValues) => {
-    onSubmit(data, isSignup);
+    const newUser: User = {
+      ...data,
+      id: uuidv4(), 
+    };
+    onSubmit(newUser, isSignup);
     reset();
   };
 

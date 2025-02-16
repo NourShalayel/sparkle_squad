@@ -14,6 +14,7 @@ import PatientDashboard from "./screens/dashboard/PatientDashboard";
 
 function App() {
   const { loggedInUser, handleAuthentication, handleLogout } = UserAuthentication();
+  
   return (
     <>
       {loggedInUser && <Header handleLogout={handleLogout} />}
