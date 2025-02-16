@@ -16,8 +16,6 @@ The Clinic Management System is a web-based application designed to streamline t
 ## Technologies Used
 
 - **Frontend**: React, TailwindCSS, DaisyUI, React Router, React Hook Form, Recharts
-- **Backend**: (Assuming you have a backend, mention it here)
-- **Database**: (Mention the database you are using, e.g., PostgreSQL, MongoDB)
 - **Other Libraries**: Emotion, FontAwesome, Heroicons, Ant Design, Lucide React, React Toastify, Yup
 
 ## Getting Started
