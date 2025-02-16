@@ -11,10 +11,22 @@ import Doctor from "./screens/doctor.screen";
 import Guarded from "./components/common/guarded-route/guarded-route.component";
 import { UserRole } from "./types/type";
 import PatientDashboard from "./screens/dashboard/PatientDashboard";
+import FirstLoading from "./components/FirstLoading/FirstLoading.components";
+import { useEffect, useState } from "react";
 
 function App() {
   const { loggedInUser, handleAuthentication, handleLogout } = UserAuthentication();
-  
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(()=> {
+      setLoading(false);
+    },3000)
+  }, []);
+  if(loading){
+    return <FirstLoading />
+  }
+
   return (
     <>
       {loggedInUser && <Header handleLogout={handleLogout} />}
