@@ -1,9 +1,4 @@
 import { useLocation, useParams } from "react-router-dom";
-import { IDoctors } from "../types";
-
-
-
-
 
 const Doctor = () =>{
     const location = useLocation();

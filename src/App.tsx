@@ -11,6 +11,7 @@ import Doctor from "./screens/doctor.screen";
 import Guarded from "./components/common/guarded-route/guarded-route.component";
 import { UserRole } from "./types/type";
 import PatientDashboard from "./screens/dashboard/PatientDashboard";
+import DoctorDashboard from "./screens/dashboard/DoctorDashboard";
 
 function App() {
   const { loggedInUser, handleAuthentication, handleLogout } = UserAuthentication();
@@ -36,7 +37,18 @@ function App() {
           }
         />
         <Route path="/appointment" element={ loggedInUser ? <Guarded roles={[UserRole.PATIENT]}><Appointment /></Guarded>: <Navigate to="/login" />} />
-        <Route path="/patient-dashboard" element={ loggedInUser ?<PatientDashboard />: <Navigate to="/login" />} />
+        <Route 
+          path="/dashboard" 
+          element={loggedInUser ? (
+            loggedInUser.role === UserRole.PATIENT ? (
+              <PatientDashboard />
+            ) : (
+              <DoctorDashboard />
+            )
+          ) : (
+            <Navigate to="/login" />
+          )}
+        />
         <Route path="/services" element={ loggedInUser ? <Services />: <Navigate to="/login" />} />
         <Route path="/services/:id" element={<Doctor />} />
         <Route path="*" element={<NotFound />} />

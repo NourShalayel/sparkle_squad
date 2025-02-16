@@ -70,7 +70,7 @@ const AppointmentForm = ({ onSubmit }: IProps) => {
     setAppointment(initValue);
     setOpenDialog(false);
     setTimeout(() => {
-      navigate("/patient-dashboard");
+      navigate("/dashboard");
     }, 2000);
   };
 
