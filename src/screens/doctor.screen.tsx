@@ -74,8 +74,8 @@ const Doctor = () => {
   }
 
     const filteredByStatus = statusFilter === "All"
-    ? filteredAppointments 
-    : filteredAppointments.filter((appointment) => appointment.status === statusFilter);
+    ? sortedAppointments  
+    : sortedAppointments .filter((appointment) => appointment.status === statusFilter);
 
   return (
     <div className="flex flex-col space-y-6 p-6 bg-sky-50 min-h-screen items-center">
