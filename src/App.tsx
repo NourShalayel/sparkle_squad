@@ -4,7 +4,7 @@ import LandingHomePage from "./components/home-landing-page";
 import Register from "./components/login/login.components";
 import UserAuthentication from "./hooks/user-authentication.hook";
 import NotFound from "./screens/not-found/not-found.screen";
-import Header from "./components/header/header.component";
+import Header from "./components/navbar/Navbar.component";
 import Appointment from "./screens/appointment/Appointment";
 import Services from "./components/Services/Services.component";
 import Doctor from "./screens/doctor.screen";

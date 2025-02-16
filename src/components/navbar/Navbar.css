@@ -5,17 +5,17 @@
     padding: 0;
     box-sizing: border-box;
 }
-.contanier {
+.container {
     padding: 20px;
     display: flex;
     justify-content: space-between;
     align-items: baseline;
     color: #214169;
     font-size: 17px;
-    background: linear-gradient(to right, #71b5fa 0%, #B6F8FF 49%, #82D3FF 100%);
 }
 
 .nav {
+    
     display: flex;
     gap: 20px;
 }
@@ -26,13 +26,13 @@
     justify-content: baseline;
     align-self: baseline;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 30px;
     font-family: 'Agbalumo', sans-serif;
 }
 
 .img {
-    width: 25px;
-    height: 25px;
+    width: 35px;
+    height: 35px;
 
 }
 

@@ -1,4 +1,4 @@
-import './header.css'
+import './Navbar.css'
 import myImage from '../../assets/careHeart.png';
 import { Link } from 'react-router-dom';
 
@@ -6,10 +6,10 @@ interface IProps {
     handleLogout: () => void;
 }
 
-const Header = (props: IProps) => {
+const Navbar = (props: IProps) => {
     return (
-        <>
-            <div className='contanier'>
+        <section className="bg-[linear-gradient(to_right,#71b5fa_0%,#B6F8FF_49%,#82D3FF_100%)] pt-8">
+            <div className='container wrapper'>
                 <div className='title'>
                     <img src={myImage} alt="heart care" className='img'/>
                     <div>CareNest</div>
@@ -30,8 +30,8 @@ const Header = (props: IProps) => {
                     </div>
                 </div>
             </div>
-        </>
+        </section>
     )
 }
 
-export default Header;
+export default Navbar;
