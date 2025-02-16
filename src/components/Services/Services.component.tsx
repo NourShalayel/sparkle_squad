@@ -1,17 +1,18 @@
 import { Link } from "react-router-dom";
-import "./Services.css";
+
+
 const Services = () => {
     const doctors = [
         { id: 1, name: 'Dr. Ahmed Ali', specialty: 'Cardiologist', image: "../../../src/assets/img/1.jpg" },
         { id: 2, name: 'Dr. John Smith', specialty: 'Neurologist', image: "../../../src/assets/img/2.jpg" },
         { id: 3, name: 'Dr. Sara Ahmed', specialty: 'Dermatologist', image: "../../../src/assets/img/3.webp" },
         { id: 4, name: 'Dr. Emily White', specialty: 'Orthopedic', image: "../../../src/assets/img/4.avif" },
-        { id: 5, name: 'Dr. Olivia Green', specialty: 'Psychiatrist', image: "../../../src/assets/img/5.jpg" },
-        { id: 6, name: 'Dr. Ali Ahmed', specialty: 'Pediatrician', image: "../../../src/assets/img/6.webp" },
+        { id: 5, name: 'Dr. Haya Ali', specialty: 'Psychiatrist', image: "../../../src/assets/img/5.jpg" },
+        { id: 6, name: 'Dr. Bahjat Ahmed', specialty: 'Pediatrician', image: "../../../src/assets/img/6.webp" },
         { id: 7, name: 'Dr. Noor Hassan', specialty: 'Cardiologist', image: "../../../src/assets/img/7.jpg" },
         { id: 8, name: 'Dr. Khaled Omar', specialty: 'Neurologist', image: "../../../src/assets/img/8.jpg" },
-        { id: 9, name: 'Dr. Layla Karim', specialty: 'Dermatologist', image: "../../../src/assets/img/9.jpg" },
-        { id: 10, name: 'Dr. Hana Ibrahim', specialty: 'Orthopedic', image: "../../../src/assets/img/10.jpg" },
+        { id: 9, name: 'Dr. Sanaa Hasan', specialty: 'Dermatologist', image: "../../../src/assets/img/9.jpg" },
+        { id: 10, name: 'Dr. Ali Thabet', specialty: 'Orthopedic', image: "../../../src/assets/img/10.jpg" },
         { id: 11, name: 'Dr. Ola Green', specialty: 'Psychiatrist', image: "../../../src/assets/img/11.jpg" },
         { id: 12, name: 'Dr. Omar Fathy', specialty: 'Pediatrician', image: "../../../src/assets/img/12.webp" },
     ];
@@ -35,10 +36,21 @@ const Services = () => {
                         <h3 className="text-2xl font-semibold text-gray-800">{doctor.name}</h3>
                         <p className="text-gray-500 text-lg mt-2">{doctor.specialty}</p>
                         <div className="mt-5 space-y-3">
-                            <button className="bg-cyan-500 text-white py-2 px-6 w-full rounded-lg hover:bg-cyan-600 transition duration-200 shadow-md">
-                            <Link to="/appointment" className="bg-cyan-500 text-white py-2 px-6 w-full rounded-lg hover:bg-cyan-600 transition"></Link>
-                                Book an appointment
-                            </button>
+                        <Link
+                            to="/appointment"
+                            className="bg-cyan-500 text-white py-2 px-6 w-full rounded-lg hover:bg-cyan-600 transition duration-200 shadow-md text-center block"
+                        >
+                            Book an appointment
+                        </Link>
+
+                           
+                            <Link 
+                            to="/appointment" 
+                            className="bg-cyan-500 text-white py-2 px-6 w-full rounded-lg hover:bg-cyan-600 transition duration-200 shadow-md">
+                                 Book an appointment
+                            </Link>
+                                
+                           
                             <Link
                                 to={`/services/${doctor.id}`}
                                 state={doctor}

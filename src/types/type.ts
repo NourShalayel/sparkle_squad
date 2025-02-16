@@ -7,7 +7,7 @@ export interface IAppointment {
     description: string;
     pickDate: string; 
     pickTime: string;  
-    id?:number;
+    id?: string | number; 
     status?:string;
     message?:string;
 }
