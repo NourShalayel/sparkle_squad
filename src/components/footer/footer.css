@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Amaranth:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Agbalumo&display=swap');
+
+.footer {
+    background-color: #3182ce;
+    color: white;
+    padding: 40px 100px;
+    text-align: left;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 100px;
+}
+
+.footer-section {
+    display: flex;
+    flex-direction: column;
+    align-self: baseline;
+    gap: 5px;
+}
+
+.logo {
+    font-size: 24px;
+    font-family: 'Agbalumo', sans-serif;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.description {
+    font-size: 14px;
+    color: #D0D0CF;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin: 5px 0;
+}
+
+.footer-section ul li a {
+    color: #D0D0CF;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.footer-section ul li a:hover {
+    text-decoration: underline;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px; 
+}
+
+.social-icons a {
+    width: 33px;
+    height: 33px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #64a5ed; 
+    border-radius: 50%; 
+    color: white; 
+    font-size: 20px; 
+    text-decoration: none; 
+    transition: all 0.3s ease-in-out;
+}
+
+.social-icons a:hover {
+    background-color: #4b89dc; 
+    transform: scale(1.1); 
+    cursor: pointer;
+}
+
+.icon-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.info-icon {
+    font-size: 14px;
+    color: #64a5ed;
+}

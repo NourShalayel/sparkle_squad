@@ -1,21 +1,7 @@
-
 import { Link } from "react-router-dom";
 import "./Services.css";
+import { doctors } from "../../data/data";
 const Services = () => {
-    const doctors = [
-        { id: 1, name: 'Dr. Ahmed Ali', specialty: 'Cardiologist', image: "../../assets/img/1.jpg" },
-        { id: 2, name: 'Dr. John Smith', specialty: 'Neurologist', image: "../../assets/img/2.jpg" },
-        { id: 3, name: 'Dr. Sara Ahmed', specialty: 'Dermatologist', image: "../../assets/img/3.webp" },
-        { id: 4, name: 'Dr. Emily White', specialty: 'Orthopedic', image: "../../assets/img/4.avif" },
-        { id: 5, name: 'Dr. Olivia Green', specialty: 'Psychiatrist', image: "../../assets/img/5.jpg" },
-        { id: 6, name: 'Dr. Ali Ahmed', specialty: 'Pediatrician', image: "../../assets/img/6.webp" },
-        { id: 7, name: 'Dr. Noor Hassan', specialty: 'Cardiologist', image: "../../assets/img/7.jpg" },
-        { id: 8, name: 'Dr. Khaled Omar', specialty: 'Neurologist', image: "../../assets/img/8.jpg" },
-        { id: 9, name: 'Dr. Layla Karim', specialty: 'Dermatologist', image: "../../assets/img/9.jpg" },
-        { id: 10, name: 'Dr. Hana Ibrahim', specialty: 'Orthopedic', image: "../../assets/img/10.jpg" },
-        { id: 11, name: 'Dr. Ola Green', specialty: 'Psychiatrist', image: "../../assets/img/11.jpg" },
-        { id: 12, name: 'Dr. Omar Fathy', specialty: 'Pediatrician', image: "../../assets/img/12.webp" },
-    ];
 
     return (
         <div className="bg-cyan-50 min-h-screen">
