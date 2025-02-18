@@ -1,11 +1,11 @@
-import { departments } from "../../data/data";
+import { departments } from "../../../../data/data";
 import "./Department.css";
 
 const Department = () => {
   return (
     <div className="department-container">
       <div className="department-header">
-        <h2>Department</h2>
+        <h2>Departments</h2>
       </div>
 
       <div className="department-list">

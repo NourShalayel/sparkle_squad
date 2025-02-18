@@ -1,5 +1,5 @@
 import { FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
-import locationImg from '../../assets/image.png'
+import locationImg from '../../../../assets/image.png'
 import './find-us.css'
 const FindUs = () => {
   return (

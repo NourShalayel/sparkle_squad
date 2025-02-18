@@ -13,7 +13,10 @@ export default {
     extend: {
       colors:{
         mainText:'#1F4169'
-      }
+      },
+      fontFamily: {
+        amaranth: ['"Amaranth"', 'sans-serif'], 
+      },
     },
   },
   plugins: [daisyui,],

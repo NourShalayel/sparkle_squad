@@ -1,5 +1,4 @@
 import { IAppointment } from "../../types/type";
-import Dialog from "../../components/Dialog";
 import { ArrowRight } from "@phosphor-icons/react";
 import { DatePicker, TimePicker } from "antd";
 import dayjs from "dayjs";
@@ -8,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { AppointmentSchema } from "../../utils/Validation";
 import { yupResolver } from "@hookform/resolvers/yup";
 import CustomUseForm from "../../hooks/useForm";
+import Dialog from "../../components/dialog/Dialog";
 
 const reasonsToVisit: string[] = [
   "General Checkup",

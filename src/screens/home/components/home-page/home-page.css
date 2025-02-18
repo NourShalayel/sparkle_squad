@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Amaranth:wght@400;700&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+
+}
+
+.home_container {
+    background: linear-gradient(to right, #71b5fa 0%, #B6F8FF 49%, #82D3FF 100%);
+}
+
+h2{
+    font-family: 'Amaranth', sans-serif;
+
+}

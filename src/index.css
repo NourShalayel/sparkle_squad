@@ -22,3 +22,11 @@ html,body{
     display: none;
 }
 
+select option {
+    background-color: white;
+    color: black;
+  }
+  
+  select option:hover {
+    background-color: #f3f4f6;
+  }

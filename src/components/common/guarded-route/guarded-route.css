@@ -7,7 +7,7 @@
     text-align: center;
     border-radius: 8px;
     position: fixed;
-    top: 100px;
+    bottom: 100px;
     left: 50%;
     transform: translateX(-50%); 
     width: 80%;

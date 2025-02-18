@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import useLocalStorage from "../../hooks/local-storage.hook";
 import { IAppointment } from "../../types/type";
 import DoctorDashboardChart from "./DoctorDashboardChart";
-import { Divider } from "antd";
+import { UserCheck, UserCircleGear, Users } from "@phosphor-icons/react";
 
 const DoctorDashboard = () => {
   const [appointments, setAppointments] = useLocalStorage<IAppointment[]>(
@@ -34,46 +34,49 @@ const DoctorDashboard = () => {
 
   return (
     <>
-      <section className="bg-[linear-gradient(to_right,#71b5fa_0%,#B6F8FF_49%,#82D3FF_100%)] h-44 items-center flex justify-center">
-        <div className="flex flex-col mt-5">
-          <h2 className="text-mainText font-medium text-2xl md:text-2xl lg:text-5xl	text-center">
-            Daily Appointment Insights
-          </h2>
-          <Divider className="" />
-        </div>
-      </section>
-      <div className="p-6  min-h-screen">
-        <div className="grid grid-cols-1 gap-6 max-w-7xl mx-auto">
-          {/* Stats Cards */}
-          <div className="flex justify-center items-center gap-6">
-            {/* Total Appointments Today Card */}
-            <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 w-1/3 text-center transform hover:scale-105">
+      <div className="p-6 min-h-screen">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+          {/* Total Appointments Today Card */}
+          <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:scale-105">
+            <div className="flex items-center gap-4">
+              <Users size={42} className="text-[#4285F4]" />
               <h3 className="text-gray-600 text-lg font-medium">
                 Total Appointments Today
               </h3>
-              <p className="text-4xl font-bold text-[#4285F4] mt-2">
-                {todayAppointments.length}
-              </p>
             </div>
-
-            {/* Pending vs. Confirmed Card */}
-            <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 w-1/3 text-center transform hover:scale-105">
-              <h3 className="text-gray-600 text-lg font-medium">
-                Pending vs. Confirmed
-              </h3>
-              <div className="mt-4 space-y-2">
-                <p className="text-xl font-semibold text-[#FF3D57]">
-                  Pending: {pendingCount}
-                </p>
-                <p className="text-xl font-semibold text-[#34A853]">
-                  Confirmed: {confirmedCount}
-                </p>
-              </div>
-            </div>
+            <p className="text-4xl font-bold text-[#4285F4] mt-2">
+              {todayAppointments.length}
+            </p>
           </div>
-
+          {/* Pending Appointments Card */}
+          <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:scale-105">
+            <div className="flex items-center gap-4">
+              <UserCircleGear size={42} className="text-[#FF3D57]" />
+              <h3 className="text-gray-600 text-lg font-medium">
+                Pending Appointments
+              </h3>
+            </div>
+            <p className="text-4xl font-bold text-[#FF3D57] mt-2">
+              {pendingCount}
+            </p>
+          </div>
+          {/* Confirmed Appointments Card */}
+          <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:scale-105">
+            <div className="flex items-center gap-4">
+              <UserCheck size={42} className="text-[#34A853]" />
+              <h3 className="text-gray-600 text-lg font-medium">
+                Confirmed Appointments
+              </h3>
+            </div>
+            <p className="text-4xl font-bold text-[#34A853] mt-2">
+              {confirmedCount}
+            </p>
+          </div>
           {/* Chart Section */}
-          <div className="col-span-3 bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <div className="col-span-1 md:col-span-2 lg:col-span-3 bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <h3 className="text-gray-600 text-lg font-medium mb-4">
+              Appointment Trends
+            </h3>
             <DoctorDashboardChart appointments={appointments} />
           </div>
         </div>
