@@ -1,7 +1,5 @@
 # Clinic Management System
 
-![Project Logo](https://via.placeholder.com/150) <!-- Add a logo if you have one -->
-
 The Clinic Management System is a web-based application designed to streamline the management of patient records, appointments, and medical histories in a clinic. Built with modern web technologies, this system provides a user-friendly interface for both clinic staff and patients.
 
 ## Features
@@ -10,13 +8,22 @@ The Clinic Management System is a web-based application designed to streamline t
 - **Appointment Scheduling**: Schedule, reschedule, and cancel appointments.
 - **Medical History**: Maintain a comprehensive medical history for each patient.
 - **User Authentication**: Secure login and role-based access control.
-- **Reporting**: Generate reports on patient visits, treatments, and more.
-- **Responsive Design**: Access the system from any device.
+- **Responsive Design**: Adapts seamlessly to all screen sizes and devices.  
 
 ## Technologies Used
 
-- **Frontend**: React, TailwindCSS, DaisyUI, React Router, React Hook Form, Recharts
-- **Other Libraries**: Emotion, FontAwesome, Heroicons, Ant Design, Lucide React, React Toastify, Yup
+### Frontend  
+- **Framework**: React (with TypeScript)
+- **Styling**: Ant Design,TailwindCSS ,DaisyUI,Phosphor
+-  **Routing**: React Router Dom
+-  **Validation**: Yup
+-  **Form Management & Validation**: React Hook Form 
+- **Alerts**:React Toastify.
+
+### Development Tools  
+- Vite  
+- ESLint  
+- TypeScript  
 
 ## Getting Started
 
@@ -31,7 +38,10 @@ Before you begin, ensure you have the following installed:
 ### Installation
 
 1. **Clone the repository**
+git clone https://github.com/your-username/your-repository.git  
 
-   ```bash
-   git clone https://github.com/your-username/clinic-management-system.git
-   cd clinic-management-system
+2. **Install the dependencies**
+   npm install  or  yarn install  
+
+3. **Running the project**
+   npm run dev
