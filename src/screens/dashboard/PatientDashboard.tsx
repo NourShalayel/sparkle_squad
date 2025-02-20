@@ -3,7 +3,6 @@ import { Divider, Empty, Typography } from "antd";
 import { CalendarBlank, Phone, User } from "@phosphor-icons/react";
 import { Link } from "react-router-dom";
 import { IAppointment } from "../../types/type";
-import Footer from "../../components/footer/footer.component";
 import male from "../../assets/male.jpg";
 import female from "../../assets/female.jpg";
 const PatientDashboard = () => {
@@ -182,7 +181,6 @@ const PatientDashboard = () => {
           </div>
         )}
       </div>
-      <Footer />
     </>
   );
 };

@@ -105,7 +105,7 @@ const AppointmentDetails = () => {
   if (!doctors)
     return <p className="text-red-500 text-xl">No doctor data available</p>;
   return (
-    <div className="flex flex-col space-y-6 p-6  min-h-screen items-center ">
+    <div className="flex flex-col space-y-6 p-6  min-h-screen items-center mt-32">
       <div
         key={doctors.id}
         className="bg-white p-6 rounded-lg shadow-lg flex justify-center items-center gap-6"
@@ -144,7 +144,7 @@ const AppointmentDetails = () => {
         </div>
       </div>
       {/* Appointments Table */}
-      <h3 className="text-mainText font-medium text-xl md:text-2xl lg:text-4xl	text-center p-4">
+      <h3 className="text-mainText font-medium text-xl md:text-2xl lg:text-4xl	text-center p-4 mt-16">
         Appointment Details
       </h3>
       <div className="overflow-x-auto max-w-7xl">
@@ -236,9 +236,9 @@ const AppointmentDetails = () => {
             ))}
           </div>
         ) : (
-          <table className="table-auto border-collapse w-[1200px] text-center text-sm">
+          <table className="table-auto border-collapse  text-center text-sm w-full">
             <thead>
-              <tr className="bg-blue-100 border-b text-center">
+              <tr className="bg-blue-100 border-b text-center text-xl">
                 <th className="p-3">Name</th>
                 <th className="p-3">Phone</th>
                 <th className="p-3">Gender</th>
@@ -256,7 +256,7 @@ const AppointmentDetails = () => {
                 paginatedAppointments.map((appointment, index) => (
                   <tr
                     key={appointment.id || index}
-                    className="border-b text-center hover:bg-blue-50 transition duration-200"
+                    className="border-b text-center text-xl hover:bg-blue-50 transition duration-200"
                   >
                     <td className="p-3">{appointment.userName || "Not Set"}</td>
                     <td className="p-3">
