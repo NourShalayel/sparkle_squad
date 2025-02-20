@@ -326,7 +326,7 @@ const AppointmentDetails = () => {
                 ))
               ) : (
                 <tr>
-                  <td colSpan="10" className="p-5 text-center text-gray-500">
+                  <td className="p-5 text-center text-gray-500">
                     No appointments found with that Doctor.
                   </td>
                 </tr>
