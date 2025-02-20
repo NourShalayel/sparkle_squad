@@ -1,6 +1,5 @@
 import { departments } from "../../../../data/data";
-import "./Department.css";
-
+import './department.css'
 const Department = () => {
   return (
     <div className="department-container">

@@ -4,11 +4,11 @@ import { UserRole } from "../../../types/type";
 import UserAuthentication from "../../../hooks/user-authentication.hook";
 import { Navigate, useNavigate } from "react-router-dom";
 
-interface Iprops {
+interface IProps {
     children: React.ReactNode;
     roles: UserRole[];
 }
-const Guarded = (props: Iprops) => {
+const Guarded = (props: IProps) => {
     const { loggedInUser } = UserAuthentication();
     const [showMessage, setShowMessage] = useState(false);
     const navigate = useNavigate();
