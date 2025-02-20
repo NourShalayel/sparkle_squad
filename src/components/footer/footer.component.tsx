@@ -6,7 +6,6 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-container">
-        {/* First Section: Logo and Social Icons */}
         <div className="footer-section">
           <div className="logo">CareNest</div>
           <p className="description">
@@ -19,8 +18,6 @@ const Footer = () => {
             <Link to=""><FaInstagram /></Link>
           </div>
         </div>
-
-        {/* Second Section: Pages */}
         <div className="footer-section">
           <div className="logo">Pages</div>
           <ul>
@@ -30,8 +27,6 @@ const Footer = () => {
             <li><Link to="">Career</Link></li>
           </ul>
         </div>
-
-        {/* Third Section: Back Links */}
         <div className="footer-section">
           <div className="logo">Back Links</div>
           <ul>
@@ -41,8 +36,6 @@ const Footer = () => {
             <li><Link to="">My Orders</Link></li>
           </ul>
         </div>
-
-        {/* Fourth Section: Work Hours */}
         <div className="footer-section">
           <div className="logo">Work Hours</div>
           <div className="description icon-item">

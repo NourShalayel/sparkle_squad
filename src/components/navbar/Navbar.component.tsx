@@ -10,6 +10,7 @@ interface IProps {
 
 const Navbar = (props: IProps) => {
   const [openMenu, setOpenMenu] = useState(false);
+
   return (
     <section className="bg-[linear-gradient(to_right,#71b5fa_0%,#B6F8FF_49%,#82D3FF_100%)]">
       <div className="container">
@@ -37,6 +38,15 @@ const Navbar = (props: IProps) => {
           <Link to="/dashboard" onClick={() => setOpenMenu(false)}>
             Dashboard
           </Link>
+          <button
+            className="text-white bg-red-500 hover:bg-red-600 px-4 py-2 rounded-lg mt-4 lg:mt-0 lg:hidden"
+            onClick={() => {
+              props.handleLogout();
+              setOpenMenu(false); 
+            }}
+          >
+            Logout
+          </button>
         </div>
         <div className="desktop-actions flex gap-4">
           <div className="search-container">
@@ -47,8 +57,11 @@ const Navbar = (props: IProps) => {
             />
             <MagnifyingGlass size={25} className="search-icon" />
           </div>
-          <button className="logout-input" onClick={props.handleLogout}>
-            LOGOUT
+          <button
+            className="text-white bg-red-500 hover:bg-red-600 px-4 py-2 rounded-lg hidden lg:block"
+            onClick={props.handleLogout}
+          >
+            Logout
           </button>
         </div>
       </div>

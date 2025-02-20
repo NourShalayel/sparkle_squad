@@ -14,8 +14,6 @@ import PatientDashboard from "./screens/dashboard/PatientDashboard";
 import DoctorDashboard from "./screens/dashboard/DoctorDashboard";
 import FirstLoading from "./components/FirstLoading/FirstLoading.components";
 import { useEffect, useState } from "react";
-import Footer from "./components/footer/footer.component";
-
 function App() {
   const { loggedInUser, handleAuthentication, handleLogout } = UserAuthentication();
   const [loading, setLoading] = useState(true);
@@ -66,7 +64,6 @@ function App() {
         <Route path="/services/:id" element={loggedInUser ? <Guarded roles={[UserRole.DOCTOR]}><Doctor /></Guarded> : <Navigate to="/login" />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-      <Footer/>
     </>
   );
 }

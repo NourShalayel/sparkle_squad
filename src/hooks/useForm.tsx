@@ -39,7 +39,13 @@ const CustomUseForm = (onSubmit: (newAppoint: IAppointment) => void) => {
     const loggedInUser = JSON.parse(
       localStorage.getItem("loggedInUser") || "null"
     );
-    const userData = { ...data, id: loggedInUser.id };
+    const doctor = JSON.parse(localStorage.getItem("doctor-info") || "null");
+    const userData = {
+      ...data,
+      id: loggedInUser.id,
+      doctorId: doctor.id,
+      doctorName: doctor.name,
+    };
     if (isDuplicateAppointment(data)) {
       toast.error("This appointment is already booked!", {
         position: "bottom-center",

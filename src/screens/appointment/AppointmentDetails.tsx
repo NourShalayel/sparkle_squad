@@ -8,7 +8,6 @@ import { useMediaQuery } from "react-responsive";
 
 const AppointmentDetails = () => {
   const isMobile = useMediaQuery({ maxWidth: 767 });
-
   const location = useLocation();
   const doctors = location.state;
   const [appointment, setAppointment] = useLocalStorage<IAppointment[]>(
@@ -27,10 +26,6 @@ const AppointmentDetails = () => {
 
   const indexOfLastRow = currentPage * pageSize;
   const indexOfFirstRow = indexOfLastRow - pageSize;
-  const currentAppointments = appointment.slice(
-    indexOfFirstRow,
-    indexOfLastRow
-  );
   useEffect(() => {
     const savedAppointments = localStorage.getItem("Appointment-Info");
     if (savedAppointments) {
@@ -57,11 +52,17 @@ const AppointmentDetails = () => {
     setName(PatientName);
   };
 
-  const filteredAppointments = appointment.filter(
-    (appointment) =>
-      appointment.userName &&
+  const filteredAppointments = appointment
+    .filter((appointment) => appointment.doctorId === doctors.id)
+    .filter(
+      (appointment) =>
+        appointment.userName &&
       appointment.userName.toLowerCase().includes(name.toLowerCase())
-  );
+    );
+    const paginatedAppointments  = filteredAppointments.slice(
+      indexOfFirstRow,
+      indexOfLastRow
+    );
 
   const sortedAppointments = filteredAppointments.sort((a, b) => {
     const dateA = new Date(a.pickDate);
@@ -93,13 +94,14 @@ const AppointmentDetails = () => {
       setIsDialogOpen(false);
     }
   };
-
   const filteredByStatus =
     statusFilter === "All"
       ? sortedAppointments
       : sortedAppointments.filter(
           (appointment) => appointment.status === statusFilter
         );
+
+
   if (!doctors)
     return <p className="text-red-500 text-xl">No doctor data available</p>;
   return (
@@ -149,7 +151,7 @@ const AppointmentDetails = () => {
         {isMobile ? (
           // Stacked Layout for Mobile
           <div className="space-y-4">
-            {filteredByStatus.map((appointment, index) => (
+            {paginatedAppointments.map((appointment, index) => (
               <div
                 key={appointment.id || index}
                 className="bg-white p-4 rounded-lg shadow-md border border-gray-200"
@@ -251,7 +253,7 @@ const AppointmentDetails = () => {
             </thead>
             <tbody className="">
               {filteredByStatus.length > 0 ? (
-                filteredByStatus.map((appointment, index) => (
+                paginatedAppointments.map((appointment, index) => (
                   <tr
                     key={appointment.id || index}
                     className="border-b text-center hover:bg-blue-50 transition duration-200"
@@ -268,7 +270,6 @@ const AppointmentDetails = () => {
                     </td>
                     <td className="p-3">{appointment.pickDate || "Not Set"}</td>
                     <td className="p-3">{appointment.pickTime || "Not Set"}</td>
-
                     <td className="">
                       <select
                         value={appointment.status || "Not Set"}
@@ -326,7 +327,7 @@ const AppointmentDetails = () => {
               ) : (
                 <tr>
                   <td colSpan="10" className="p-5 text-center text-gray-500">
-                    No appointments found with that name or status.
+                    No appointments found with that Doctor.
                   </td>
                 </tr>
               )}
@@ -334,19 +335,15 @@ const AppointmentDetails = () => {
           </table>
         )}
       </div>
-
-      {/* Pagination */}
       <div className="flex justify-center mt-6">
         <Pagination
           current={currentPage}
           pageSize={pageSize}
-          total={appointment.length}
+          total={filteredAppointments.length}
           onChange={(page) => setCurrentPage(page)}
-          showSizeChanger={false} // Hide page size changer
+          showSizeChanger={false}
         />
       </div>
-
-      {/* Notes Dialog */}
       <NotesDialog
         isOpen={isDialogOpen}
         onClose={() => setIsDialogOpen(false)}

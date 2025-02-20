@@ -34,9 +34,11 @@ const DoctorDashboard = () => {
 
   return (
     <>
-      <div className="p-6 min-h-screen">
+      <div className="p-6 min-h-screen mt-16">
+        <h2 className="text-5xl font-bold text-center text-mainText ">
+          Doctor Dashboard Overview
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
-          {/* Total Appointments Today Card */}
           <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:scale-105">
             <div className="flex items-center gap-4">
               <Users size={42} className="text-[#4285F4]" />
@@ -48,7 +50,6 @@ const DoctorDashboard = () => {
               {todayAppointments.length}
             </p>
           </div>
-          {/* Pending Appointments Card */}
           <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:scale-105">
             <div className="flex items-center gap-4">
               <UserCircleGear size={42} className="text-[#FF3D57]" />
@@ -60,7 +61,6 @@ const DoctorDashboard = () => {
               {pendingCount}
             </p>
           </div>
-          {/* Confirmed Appointments Card */}
           <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:scale-105">
             <div className="flex items-center gap-4">
               <UserCheck size={42} className="text-[#34A853]" />
@@ -72,7 +72,6 @@ const DoctorDashboard = () => {
               {confirmedCount}
             </p>
           </div>
-          {/* Chart Section */}
           <div className="col-span-1 md:col-span-2 lg:col-span-3 bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
             <h3 className="text-gray-600 text-lg font-medium mb-4">
               Appointment Trends

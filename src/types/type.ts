@@ -10,13 +10,15 @@ export interface IAppointment {
   id?: string | number;
   status?: string;
   message?: string;
+  doctorId?: IDoctors["id"];
+  doctorName?: string;
 }
 
 export interface IDoctors {
-  img: string;
+  img?: string;
   id: number;
   name: string;
-  specialty: string;
+  specialty?: string;
 }
 export interface User {
   id: string;

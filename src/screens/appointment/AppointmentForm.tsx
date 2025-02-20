@@ -1,5 +1,4 @@
 import { IAppointment } from "../../types/type";
-import { ArrowRight } from "@phosphor-icons/react";
 import { DatePicker, TimePicker } from "antd";
 import dayjs from "dayjs";
 import "antd/dist/reset.css";
@@ -45,19 +44,19 @@ const AppointmentForm = ({ onSubmit }: IProps) => {
 
   return (
     <form className="wrapper" onSubmit={handleSubmit(onSubmitForm)}>
-      <div className="border rounded-2xl m-auto p-10 ">
-        <h2 className="text-center text-mainText font-bold text-4xl">
+      <div className="border rounded-2xl mx-auto p-4 md:p-10 max-w-4xl">
+        <h2 className="text-center text-mainText font-bold text-2xl md:text-4xl">
           Appointment
         </h2>
         <div className="divider"></div>
-        <div className="flex flex-col md:flex-row gap-5">
+        <div className="flex flex-col md:flex-row gap-4 md:gap-5">
           <label className="form-control w-full mt-4">
             Name
             <input
               {...register("userName")}
               type="text"
               placeholder="Type here"
-              className="custom_input"
+              className="custom_input w-full"
             />
             {errors.userName && (
               <p className="text-red-500 text-sm">{errors.userName.message}</p>
@@ -67,23 +66,21 @@ const AppointmentForm = ({ onSubmit }: IProps) => {
             Phone Number
             <input
               {...register("patientPhone")}
-              type={"text"}
+              type="text"
               placeholder="Type here"
-              className="custom_input"
+              className="custom_input w-full"
             />
             {errors.patientPhone && (
-              <p className="text-red-500 text-sm">
-                {errors.patientPhone.message}
-              </p>
+              <p className="text-red-500 text-sm">{errors.patientPhone.message}</p>
             )}
           </label>
         </div>
-        <div className="flex flex-col md:flex-row gap-5">
+        <div className="flex flex-col md:flex-row gap-4 md:gap-5">
           <label className="form-control w-full mt-4">
             Gender
             <select
               {...register("gender")}
-              className="form-select custom_input"
+              className="form-select custom_input w-full"
               defaultValue=""
             >
               <option value="" disabled>
@@ -100,21 +97,21 @@ const AppointmentForm = ({ onSubmit }: IProps) => {
             Age
             <input
               {...register("age")}
-              type={"text"}
+              type="text"
               placeholder="Type here"
-              className="custom_input"
+              className="custom_input w-full"
             />
             {errors.age && (
               <p className="text-red-500 text-sm">{errors.age.message}</p>
             )}
           </label>
         </div>
-        <div className="flex flex-col md:flex-row gap-5">
+        <div className="flex flex-col md:flex-row gap-4 md:gap-5">
           <label className="form-control w-full mt-4">
             Reason for visit
             <select
               {...register("reason")}
-              className="form-select custom_input"
+              className="form-select custom_input w-full"
               defaultValue=""
             >
               <option value="" disabled>
@@ -135,16 +132,14 @@ const AppointmentForm = ({ onSubmit }: IProps) => {
             <textarea
               {...register("description")}
               placeholder="Type here"
-              className="custom_input mt-2 py-3"
+              className="custom_input w-full mt-2 py-3"
             />
             {errors.description && (
-              <p className="text-red-500 text-sm">
-                {errors.description.message}
-              </p>
+              <p className="text-red-500 text-sm">{errors.description.message}</p>
             )}
           </label>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-4 w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 mt-4 w-full">
           <div>
             <div className="label">Appointment date</div>
             <DatePicker
@@ -188,20 +183,19 @@ const AppointmentForm = ({ onSubmit }: IProps) => {
               allowClear
               minuteStep={30}
               use12Hours
-              className="custom_input w-full "
+              className="custom_input w-full"
             />
             {errors.pickTime && (
               <p className="text-red-500 text-sm">{errors.pickTime.message}</p>
             )}
           </div>
         </div>
-        <div className="flex justify-center md:justify-start">
+        <div className="justify-center items-center md:justify-start">
           <button
             type="submit"
-            className="custom-btn btn mt-10 bg-[#9ee5ff] text-mainText border-none text-lg shadow-sm shadow-[#6295b1]"
+            className="custom-btn btn mt-6 px-4 md:mt-10 bg-[#9ee5ff] text-mainText border-none text-lg shadow-sm shadow-[#6295b1]"
           >
             Submit
-            <ArrowRight size={23} />
           </button>
         </div>
       </div>

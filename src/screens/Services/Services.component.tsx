@@ -2,6 +2,8 @@ import { Pagination } from "antd";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { doctors } from "../../data/data";
+import { IDoctors } from "../../types/type";
+import useLocalStorage from "../../hooks/local-storage.hook";
 
 const Services = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -9,6 +11,18 @@ const Services = () => {
   const indexOfLastDoctor = currentPage * pageSize;
   const indexOfFirstDoctor = indexOfLastDoctor - pageSize;
   const currentDoctors = doctors.slice(indexOfFirstDoctor, indexOfLastDoctor);
+
+  const [doctorInfo, setDoctorInfo] = useLocalStorage<IDoctors | null>(
+    "doctor-info",
+    null
+  );
+  const handleBookAppoint = (doctor: IDoctors) => {
+    setDoctorInfo({
+      id: doctor.id,
+      name: doctor.name,
+    });
+    console.log(doctorInfo);
+  };
   return (
     <div className="bg-white pb-5">
       <div className="  pt-5">
@@ -16,7 +30,7 @@ const Services = () => {
           our services
         </h2>
       </div>
-      <div className="w-4/5 mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 p-4">
+      <div className="w-4/5 mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 p-4">
         {currentDoctors.map((doctor) => (
           <div
             key={doctor.id}
@@ -40,10 +54,10 @@ const Services = () => {
                 to="/appointment"
                 className="bg-cyan-500 text-white py-2 px-6 w-full rounded-lg hover:bg-cyan-600 
                 transition duration-200 shadow-md text-center block"
+                onClick={() => handleBookAppoint(doctor)}
               >
                 Book an appointment
               </Link>
-
               <Link
                 to={`/services/${doctor.id}`}
                 state={doctor}

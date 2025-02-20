@@ -14,7 +14,7 @@ const Appointment = () => {
   return (
     <>
       <section className="bg-[linear-gradient(to_right,#71b5fa_0%,#B6F8FF_49%,#82D3FF_100%)] pt-8">
-        <div className="wrapper flex flex-col md:flex-row justify-center items-center container mx-auto px-6 md:gap-5">
+        <div className="wrapper flex flex-col md:flex-row justify-center items-center  mx-auto px-6 md:gap-5">
           {/* Left */}
           <div className="w-full md:w-1/2">
             <img
@@ -35,8 +35,8 @@ const Appointment = () => {
           </div>
         </div>
       </section>
-      <div className="grid grid-cols-1 md:grid-cols-2 mx-auto mt-12 wrapper gap-6 justify-center">
-        <div className="">
+      <div className="grid grid-cols-1 md:grid-cols-2 mx-auto mt-12 wrapper gap-16 justify-center">
+        <div className="mb-16">
           <AppointmentForm onSubmit={handleAppointment} />
         </div>
         <div>

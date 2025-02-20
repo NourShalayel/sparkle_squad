@@ -95,7 +95,6 @@ const DoctorDashboardChart = ({ appointments }: Props) => {
         </BarChart>
       </ResponsiveContainer>
     </div>
-  
     {/* Daily Chart */}
     <div className="bg-white p-6 rounded-xl shadow-lg w-full lg:w-1/2">
       <h3 className="text-[#1A2A42] text-2xl font-semibold mb-4 text-center">

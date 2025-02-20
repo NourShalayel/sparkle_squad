@@ -7,7 +7,6 @@ const Department = () => {
       <div className="department-header">
         <h2>Departments</h2>
       </div>
-
       <div className="department-list">
         {departments.map((dept) => (
           <div key={dept.id} className="department-item">

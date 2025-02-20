@@ -1,3 +1,4 @@
+import Footer from "../../components/footer/footer.component"
 import About from "./components/about/about.component"
 import BookingInfo from "./components/booking-info/booking-info.component"
 import Department from "./components/department/department.component"
@@ -24,6 +25,7 @@ const LandingHomePage = () => {
       <About />
       <Department />
       <FindUs />
+      <Footer/>
     </>
   )
 }

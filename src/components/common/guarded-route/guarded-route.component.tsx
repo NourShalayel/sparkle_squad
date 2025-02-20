@@ -24,7 +24,7 @@ const Guarded = (props: Iprops) => {
                 navigate("/");
             }, 2000)
         }
-        return <div className="permission">🚫 You don't have permission to access this page.</div>;
+        return <div className="permission m-auto">🚫 You don't have permission to access this page.</div>;
     }
 
     return <>{props.children}</>
