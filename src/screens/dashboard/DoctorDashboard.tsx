@@ -5,7 +5,7 @@ import DoctorDashboardChart from "./DoctorDashboardChart";
 import { UserCheck, UserCircleGear, Users } from "@phosphor-icons/react";
 
 const DoctorDashboard = () => {
-  const [appointments, setAppointments] = useLocalStorage<IAppointment[]>(
+  const [appointments] = useLocalStorage<IAppointment[]>(
     "Appointment-Info",
     []
   );
