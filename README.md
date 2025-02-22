@@ -2,6 +2,9 @@
 
 The Clinic Management System is a web-based application designed to streamline the management of patient records, appointments, and medical histories in a clinic. Built with modern web technologies, this system provides a user-friendly interface for both clinic staff and patients.
 
+## Demo  
+🚀 **[Live Demo] [https://parklesquad-six.vercel.app]**  
+
 ## Features
 
 - **Patient Management**: Add, update, and delete patient records.
